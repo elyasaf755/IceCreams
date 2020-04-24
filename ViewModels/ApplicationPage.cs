@@ -1,5 +1,5 @@
 ﻿
-namespace Models
+namespace ViewModels
 {
     /// <summary>
     /// A page of the application

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security;
+﻿using System.Security;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 
 namespace ViewModels
@@ -36,6 +31,11 @@ namespace ViewModels
         /// </summary>
         public ICommand LoginCommand { get; set; }
 
+        /// <summary>
+        /// The command to change the page to the register page
+        /// </summary>
+        public ICommand MoveToRegisterPageCommand { get; set; }
+
         #endregion
 
         #region Constructor
@@ -47,6 +47,7 @@ namespace ViewModels
         {
             // Create commands
             LoginCommand = new RelayParameterizedCommand(async (parameter) => await Login(parameter));
+            MoveToRegisterPageCommand = new RelayCommand(async () => await MoveToRegisterPage());
         }
 
         #endregion
@@ -66,6 +67,18 @@ namespace ViewModels
 
                 var pass = (parameter as IHavePassword).SecurePassword.Unsecure();
             });
+        }
+
+        /// <summary>
+        /// Takes the user to the register page
+        /// </summary>
+        /// <returns></returns>
+        public async Task MoveToRegisterPage()
+        {
+            // Go to register page?
+            IoC.Get<ApplicationViewModel>().CurrentPage = ApplicationPage.RegisterEmail;
+
+            await Task.Delay(1);
         }
     }
 }

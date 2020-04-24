@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="Address.cs" />
     <Compile Include="Admin.cs" />
-    <Compile Include="ApplicationPage.cs" />
     <Compile Include="IceCream.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -10,17 +10,19 @@
       Title="Register Page">
 
     <Grid>
-        <Image Source="/IceCreams;component/Images/icecreams2.jpg" Stretch="Fill" Opacity="0.6" >
+        <Image Source="/IceCreams;component/Images/icecreams2.jpg" Stretch="Fill" Opacity=".5" >
             <Image.Effect>
                 <BlurEffect Radius="30"/>
             </Image.Effect>
         </Image>
         <StackPanel>
             <!--Header Text-->
-            <TextBlock Text="GETTING YOUR ICECREAMS STARTS HERE." Margin="0 150 0 0" Style="{StaticResource HeaderText}"/>
+            <TextBlock Text="GETTING YOUR ICECREAMS STARTS HERE." Margin="0 100 0 0" Style="{StaticResource HeaderText}"/>
             
             <!--Email-->
-            <TextBox x:Name="Email" Tag="YOUR EMAIL HERE" Height="60" Width="300" Margin="0 150 0 0"/>
+            <TextBox x:Name="Email" Tag="YOUR EMAIL HERE" 
+                     Height="60" Width="300" Margin="0 150 0 0"
+                     Style="{StaticResource RegisterationTextBox}"/>
             
             <!--Continue Button-->
             <Button x:Name="ContinueButton1" Style="{StaticResource NextButton}" Margin="0 100 0 0"/>

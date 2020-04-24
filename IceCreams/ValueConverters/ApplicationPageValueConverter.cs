@@ -1,7 +1,7 @@
-﻿using Models;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Globalization;
+using ViewModels;
 
 namespace IceCreams
 {

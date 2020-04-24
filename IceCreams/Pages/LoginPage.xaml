@@ -42,7 +42,8 @@
 
                 <!--Create Account TextButton-->
                 <Button x:Name="CreateAccountButton" Style="{StaticResource TextButton}"
-                        Content="CREATE ACCOUNT" Margin="50 10 0 0" />
+                        Content="CREATE ACCOUNT" Margin="50 10 0 0" 
+                        Command="{Binding MoveToRegisterPageCommand}" />
 
                 <!--Can't Sign In? TextButton-->
                 <Button x:Name="CantSignInButton" Style="{StaticResource TextButton}"
