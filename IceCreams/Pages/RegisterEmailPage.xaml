@@ -1,0 +1,29 @@
+﻿<local:PageBase x:TypeArguments="vm:RegisterViewModel" x:Class="IceCreams.RegisterEmailPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:IceCreams"
+      xmlns:vm="clr-namespace:ViewModels;assembly=ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1080"
+      Title="Register Page">
+
+    <Grid>
+        <Image Source="/IceCreams;component/Images/icecreams2.jpg" Stretch="Fill" Opacity="0.6" >
+            <Image.Effect>
+                <BlurEffect Radius="30"/>
+            </Image.Effect>
+        </Image>
+        <StackPanel>
+            <!--Header Text-->
+            <TextBlock Text="GETTING YOUR ICECREAMS STARTS HERE." Margin="0 150 0 0" Style="{StaticResource HeaderText}"/>
+            
+            <!--Email-->
+            <TextBox x:Name="Email" Tag="YOUR EMAIL HERE" Height="60" Width="300" Margin="0 150 0 0"/>
+            
+            <!--Continue Button-->
+            <Button x:Name="ContinueButton1" Style="{StaticResource NextButton}" Margin="0 100 0 0"/>
+        </StackPanel>
+    </Grid>
+</local:PageBase>
