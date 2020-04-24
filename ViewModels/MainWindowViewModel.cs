@@ -13,6 +13,5 @@ namespace ViewModels
         /// The current page of the application
         /// </summary>
         public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Login;
-        public int a;
     }
 }
