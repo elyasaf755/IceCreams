@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace ViewModels
 {
@@ -50,6 +52,20 @@ namespace ViewModels
 
         #endregion
 
+        #region Commands
+
+        /// <summary>
+        /// The command to change the page to the register date page
+        /// </summary>
+        public ICommand MoveToRegisterDatePageCommand { get; set; }
+
+        /// <summary>
+        /// The command to change the page to the register password page
+        /// </summary>
+        public ICommand MoveToRegisterPasswordPageCommand { get; set; }
+
+        #endregion
+
         #region Constructor
 
         public RegisterViewModel()
@@ -59,6 +75,9 @@ namespace ViewModels
 
             _months = DateTimeFormatInfo.CurrentInfo.MonthNames.ToList();
             _months.RemoveAll(x => string.IsNullOrEmpty(x));
+
+            MoveToRegisterDatePageCommand = new RelayCommand(async () => await MoveToRegisterDatePage());
+            MoveToRegisterPasswordPageCommand = new RelayCommand(async () => await MoveToRegisterPasswordPage());
         }
 
         #endregion
@@ -76,5 +95,33 @@ namespace ViewModels
         }
 
         #endregion
+
+        /// <summary>
+        /// Takes the user to the register date page
+        /// </summary>
+        /// <returns></returns>
+        public async Task MoveToRegisterDatePage()
+        {
+            // TODO: Complete this function's logic
+
+            // Go to register date page
+            IoC.Get<ApplicationViewModel>().CurrentPage = ApplicationPage.RegisterDate;
+
+            await Task.Delay(1);
+        }
+
+        /// <summary>
+        /// Takes the user to the register password page
+        /// </summary>
+        /// <returns></returns>
+        public async Task MoveToRegisterPasswordPage()
+        {
+            // TODO: Complete this function's logic
+
+            // Go to register date page
+            IoC.Get<ApplicationViewModel>().CurrentPage = ApplicationPage.RegisterPassword;
+
+            await Task.Delay(1);
+        }
     }
 }

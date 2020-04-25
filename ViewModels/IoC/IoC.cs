@@ -4,7 +4,7 @@ using System;
 namespace ViewModels
 {
     /// <summary>
-    /// The IoC container for our application
+    /// The Inversion of Control container for our application
     /// </summary>
     public static class IoC
     {
