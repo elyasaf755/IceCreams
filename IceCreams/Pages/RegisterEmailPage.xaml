@@ -22,7 +22,8 @@
             <!--Email-->
             <TextBox x:Name="Email" Tag="YOUR EMAIL HERE" 
                      Height="60" Width="300" Margin="0 150 0 0"
-                     Style="{StaticResource RegisterationTextBox}"/>
+                     Style="{StaticResource RegisterationTextBox}"
+                     Text="{Binding Email, Mode=OneWayToSource}"/>
             
             <!--Continue Button-->
             <Button x:Name="ContinueButton1" Style="{StaticResource NextButton}" Margin="0 100 0 0" Command="{Binding MoveToRegisterDatePageCommand}"/>

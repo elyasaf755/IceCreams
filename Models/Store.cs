@@ -73,6 +73,8 @@ namespace Models
                 return _usersScores;
             }
         }
+        public string Name { get; set; }
+        public int Stars { get; set; }
         #endregion
 
         //Constructors

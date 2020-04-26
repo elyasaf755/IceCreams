@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,15 +17,13 @@ using ViewModels;
 namespace IceCreams
 {
     /// <summary>
-    /// Interaction logic for LoginPage.xaml
+    /// Interaction logic for StorePage.xaml
     /// </summary>
-    public partial class LoginPage : PageBase<LoginViewModel>, IHavePassword
+    public partial class StorePage : PageBase<StoreViewModel>
     {
-        public LoginPage()
+        public StorePage()
         {
             InitializeComponent();
         }
-
-        public SecureString SecurePassword => PasswordPasswordBox.SecurePassword;
     }
 }

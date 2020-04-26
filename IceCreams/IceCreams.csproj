@@ -78,6 +78,9 @@
     <Compile Include="Pages\RegisterEmailPage.xaml.cs">
       <DependentUpon>RegisterEmailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\StorePage.xaml.cs">
+      <DependentUpon>StorePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ValueConverters\ApplicationPageValueConverter.cs" />
     <Compile Include="ValueConverters\BooleanToVisibilityConverter.cs" />
     <Compile Include="ValueConverters\ValueConverterBase.cs" />
@@ -109,6 +112,10 @@
     <Page Include="Pages\RegisterEmailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\StorePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Buttons.xaml">
       <SubType>Designer</SubType>
@@ -202,6 +209,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\icecreams5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\shop1.png" />
+    <Resource Include="Images\shop2.png" />
+    <Resource Include="Images\shop3.png" />
+    <Resource Include="Images\shop4.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
