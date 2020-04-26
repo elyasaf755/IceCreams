@@ -27,6 +27,9 @@ namespace IceCreams
                 case ApplicationPage.RegisterPassword:
                     return new RegisterPasswordPage();
 
+                case ApplicationPage.Store:
+                    return new StorePage();
+
                 default:
                     Debugger.Break();
                     return null;

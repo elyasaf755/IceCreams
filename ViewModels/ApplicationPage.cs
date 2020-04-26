@@ -25,5 +25,10 @@ namespace ViewModels
         /// The password registeration page
         /// </summary>
         RegisterPassword = 3,
+
+        /// <summary>
+        /// The password registeration page
+        /// </summary>
+        Store = 4,
     }
 }

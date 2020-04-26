@@ -7,9 +7,18 @@
       xmlns:vm="clr-namespace:ViewModels;assembly=ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="StorePage">
+      Title="{Binding CurrentStore.Name}">
 
-    <Grid>
-        
+    <Page.Resources>
+        <BitmapImage x:Key="DesignSource" UriSource="pack://application:,,,/Images/shop4.png"/>
+    </Page.Resources>
+
+    <!--{Binding CurrentStore.PictureUrl, Converter={local:ImageSourceConverter}}-->
+    <Grid d:DataContext="{x:Static vm:StoreDesignViewModel.Instance}">
+        <StackPanel Orientation="Horizontal">
+            <Image Height="200" Width="200" Stretch="Fill"
+                   Source="{Binding CurrentStore.PictureUrl, Converter={local:ImageSourceConverter}, FallbackValue={StaticResource DesignSource}}" />
+            <TextBlock Text="{Binding CurrentStore.Name}" FontSize="30" VerticalAlignment="Center" TextAlignment="Center" />
+        </StackPanel>
     </Grid>
 </local:PageBase>
