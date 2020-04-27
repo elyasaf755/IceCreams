@@ -9,16 +9,10 @@ namespace ViewModels
 {
     public class StoreViewModel : ViewModelBase
     {
-        public Store CurrentStore { get; set; } = new Store
+        public Store CurrentStore { get; set; }
+
+        public StoreViewModel()
         {
-            Name = "Scoops",
-            PictureUrl = @"pack://application:,,,/Images/shop3.png",
-            Address = new Address
-            {
-                Country = "Israel",
-                City = "Jerusalem",
-                Street = "Jaffa 70",
-            },
-        };
+        }
     }
 }

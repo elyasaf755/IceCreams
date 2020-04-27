@@ -38,18 +38,7 @@ namespace Models
                 _pictureUrl = value;
             }
         }
-        public string Phone
-        {
-            get
-            {
-                return _phone;
-            }
-
-            set
-            {
-                _phone = value;
-            }
-        }
+        public string Phone { get; set; }
         public List<Icecream> Icecreams
         {
             get { return _icecreams; }

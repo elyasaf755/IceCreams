@@ -35,7 +35,8 @@
                     Content="Login" Height="35" Width="100" Margin="88,300,87,115" 
                     local:IsBusyProperty.Value="{Binding IsLoginRunning}"
                     Command="{Binding LoginCommand}"
-                    CommandParameter="{Binding ElementName=MyLoginPage}"/>
+                    CommandParameter="{Binding ElementName=MyLoginPage}"
+                    IsDefault="True"/>
 
             <!--Create Account & Can't Sign In? Text Blocks-->
             <StackPanel Margin="0,575,0,0" Height="auto" >

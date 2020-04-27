@@ -41,7 +41,8 @@
 
             <!--Continue Button-->
             <Button x:Name="ContinueButton1" Style="{StaticResource NextButton}" 
-                    Margin="0 100 0 0" Command="{Binding MoveToRegisterPasswordPageCommand}"/>
+                    Margin="0 100 0 0" IsDefault="True"
+                    Command="{Binding MoveToRegisterPasswordPageCommand}"/>
         </StackPanel>
     </Grid>
 </local:PageBase>

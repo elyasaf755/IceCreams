@@ -7,8 +7,6 @@ namespace Models
         private string _country;
         private string _city;
         private string _street;
-        private double _latitude;
-        private double _longitude;
         #endregion
 
         #region Public Properties
@@ -48,30 +46,6 @@ namespace Models
                 _street = value;
             }
         }
-        public double Latitude
-        {
-            get
-            {
-                return _latitude;
-            }
-
-            set
-            {
-                _latitude = value;
-            }
-        }
-        public double Logitude
-        {
-            get
-            {
-                return _longitude;
-            }
-
-            set
-            {
-                _longitude = value;
-            }
-        }
         #endregion
 
         //Constructors
@@ -83,5 +57,9 @@ namespace Models
 
 
         //Overrides
+        public override string ToString()
+        {
+            return string.Format("{0}, {1}, {2}", Street, City, Country);
+        }
     }
 }

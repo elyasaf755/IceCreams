@@ -176,6 +176,7 @@
     <Resource Include="Fonts\Lato-SemiboldItalic.ttf" />
     <Resource Include="Fonts\Lato-Thin.ttf" />
     <Resource Include="Fonts\Lato-ThinItalic.ttf" />
+    <Resource Include="Fonts\gomarice_melting_ice_cream.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -216,6 +217,9 @@
     <Resource Include="Images\shop2.png" />
     <Resource Include="Images\shop3.png" />
     <Resource Include="Images\shop4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\image_not_found.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

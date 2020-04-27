@@ -13,19 +13,42 @@ namespace IceCreams
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            BitmapImage result;
+
             if (targetType == typeof(ImageSource))
             {
                 if (value is string)
                 {
                     string str = (string)value;
-                    return new BitmapImage(new Uri(str, UriKind.RelativeOrAbsolute));
+
+                    try
+                    {
+                        result = new BitmapImage(new Uri(str, UriKind.RelativeOrAbsolute));
+                    }
+                    catch (System.IO.IOException)
+                    {
+                        return new BitmapImage(new Uri(@"pack://application:,,,/Images/image_not_found.png", UriKind.RelativeOrAbsolute));
+                    }
+
+                    return result;
                 }
                 else if (value is Uri)
                 {
                     Uri uri = (Uri)value;
-                    return new BitmapImage(uri);
+
+                    try
+                    {
+                        result = new BitmapImage(uri);
+                    }
+                    catch (System.IO.IOException)
+                    {
+                        return new BitmapImage(new Uri(@"pack://application:,,,/Images/image_not_found.png", UriKind.RelativeOrAbsolute));
+                    }
+
+                    return result;
                 }
             }
+
             return value;
         }
 

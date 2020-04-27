@@ -6,19 +6,68 @@
       xmlns:local="clr-namespace:IceCreams"
       xmlns:vm="clr-namespace:ViewModels;assembly=ViewModels"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="720" d:DesignWidth="1080"
       Title="{Binding CurrentStore.Name}">
 
     <Page.Resources>
-        <BitmapImage x:Key="DesignSource" UriSource="pack://application:,,,/Images/shop4.png"/>
+        <BitmapImage x:Key="ImageDesignSource" UriSource="pack://application:,,,/Images/shop4.png"/>
+        <BitmapImage x:Key="NoImageDesignSource" UriSource="pack://application:,,,/Images/image_not_found.png"/>
     </Page.Resources>
 
-    <!--{Binding CurrentStore.PictureUrl, Converter={local:ImageSourceConverter}}-->
-    <Grid d:DataContext="{x:Static vm:StoreDesignViewModel.Instance}">
-        <StackPanel Orientation="Horizontal">
-            <Image Height="200" Width="200" Stretch="Fill"
-                   Source="{Binding CurrentStore.PictureUrl, Converter={local:ImageSourceConverter}, FallbackValue={StaticResource DesignSource}}" />
-            <TextBlock Text="{Binding CurrentStore.Name}" FontSize="30" VerticalAlignment="Center" TextAlignment="Center" />
-        </StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Page Header (Upper Row) -->
+            <!-- Store Logo -->
+            <Image Stretch="Fill" VerticalAlignment="Top" HorizontalAlignment="Left"
+               Source="{Binding CurrentStore.PictureUrl, 
+                                Converter={local:ImageSourceConverter}, 
+                                FallbackValue={StaticResource ImageDesignSource}, 
+                                TargetNullValue={StaticResource ImageDesignSource}}" />
+
+            <!-- Store Header -->
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Margin="0 0 40 0">
+                
+                <!-- Store Name -->
+                <TextBlock Text="{Binding CurrentStore.Name, 
+                                          FallbackValue='ICECREAM STORE NAME',
+                                          TargetNullValue='ICECREAM STORE NAME'}" 
+                           FontSize="50" FontFamily="Gabriola"
+                           VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+                <!-- Store Address Line -->
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="{StaticResource FontAwesomeLocationIcon}" Style="{StaticResource IconTextBlock}" Margin="0 0 5 5"/>
+                    <TextBlock Text="{Binding CurrentStore.Address, 
+                                              FallbackValue='Street, City, Country',
+                                              TargetNullValue='Street, City, Country'}" />
+                </StackPanel>
+
+                <!-- Store Phone Number -->
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="{StaticResource FontAwesomePhoneIcon}" Style="{StaticResource IconTextBlock}" Margin="0 0 5 0"/>
+                    <TextBlock Text="{Binding CurrentStore.Phone, 
+                                              FallbackValue='Phone Number',
+                                              TargetNullValue='Phone Number'}" />
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Page Content (Lower Row) -->
+            
+            
+        </Grid>
+
+        
+        
+        
     </Grid>
 </local:PageBase>
