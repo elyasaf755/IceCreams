@@ -5,9 +5,16 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:IceCreams"
       xmlns:vm="clr-namespace:ViewModels;assembly=ViewModels"
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1080"
       Title="{Binding CurrentStore.Name}">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
     <Page.Resources>
         <BitmapImage x:Key="ImageDesignSource" UriSource="pack://application:,,,/Images/shop4.png"/>

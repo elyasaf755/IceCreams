@@ -11,7 +11,7 @@
     
     <UserControl.Resources>
         <!-- Item Image Resource -->
-        <BitmapImage x:Key="ImageDesignSource" UriSource="" BaseUri="/IceCreams;component/Images/items/icecream_item2.jpg"/>
+        <BitmapImage x:Key="ImageDesignSource" UriSource="/IceCreams;component/Images/Items/icecream_item2.jpg"/>
 
         <!-- Control Content -->
         <Style x:Key="ContentStyle" TargetType="{x:Type ContentControl}">
@@ -26,23 +26,23 @@
                             <StackPanel>
 
                                 <!-- Item Name -->
-                                <TextBlock Text="{Binding Name}" Foreground="#FF569BFF"
+                                <TextBlock Text="{Binding Name, TargetNullValue='Icecream Name'}" Foreground="#FF569BFF"
                                            Margin="10" FontFamily="Showcard Gothic" FontSize="12" 
                                            TextAlignment="Center"/>
 
                                 <!-- Item Image -->
-                                <Image Source="{Binding ImageUrl,
+                                <Image Source="{Binding ImageUrl, Converter={local:ImageSourceConverter},
                                                         FallbackValue={StaticResource ImageDesignSource},
                                                         TargetNullValue={StaticResource ImageDesignSource}}" 
                                        Stretch="UniformToFill" MaxHeight="180"/>
 
                                 <!-- Item Description -->
-                                <TextBlock Text="{Binding Description}" Margin="5" TextWrapping="Wrap" 
+                                <TextBlock Text="{Binding Description, TargetNullValue='Icecream description here, convince me to buy it.'}" Margin="5" TextWrapping="Wrap" 
                                            FontFamily="Champagne &amp; Limousines" FontSize="10" 
                                            TextAlignment="Center" MaxHeight="30" TextTrimming="CharacterEllipsis" ToolTip="{Binding Description}"/>
 
                                 <!-- Item Price -->
-                                <TextBlock Text="{Binding Price}" Margin="5 0 5 0"
+                                <TextBlock Text="{Binding Price, TargetNullValue='$20.99'}" Margin="5 0 5 0"
                                            FontSize="20" FontFamily="Champagne &amp; Limousines"
                                            TextAlignment="Center"
                                            Foreground="Red" />
@@ -58,6 +58,7 @@
     </UserControl.Resources>
 
 
-    <ContentControl d:DataContext="{x:Static vm:StoreListItemDesignModel.Instance}"
-                    Style="{StaticResource ContentStyle}"/>
+    <ContentControl DataContext="{x:Static vm:StoreListItemViewModel.Instance}"
+                    Style="{StaticResource ContentStyle}" />
+    
 </UserControl>

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IceCreams"
              xmlns:vm="clr-namespace:ViewModels;assembly=ViewModels"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="350" d:DesignWidth="700">
     
     <Grid d:DataContext="{x:Static vm:StoreListDesignModel.Instance}">
@@ -16,8 +16,7 @@
             <ListBox x:Name="MyListBox" ItemsSource="{Binding Items}" 
                      HorizontalAlignment="Center" VerticalAlignment="Center" 
                      HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                     Height="308" Width="634" 
-                     Background="Transparent" BorderBrush="Transparent">
+                     Height="330" Width="634" Background="Transparent" BorderBrush="Transparent">
                 
                 <!-- Items Type Definition -->
                 <ListBox.ItemTemplate>
@@ -25,15 +24,6 @@
                         <local:StoreListItemControl />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
-
-                <!-- Items Type Definition -->
-                <ItemsControl ItemsSource="{Binding Items}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <local:StoreListItemControl/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
 
                 <!-- Make the ListBox show content horizontally -->
                 <ListBox.ItemsPanel>
