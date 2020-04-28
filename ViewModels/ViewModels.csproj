@@ -55,7 +55,8 @@
     <Compile Include="Base\IHavePassword.cs" />
     <Compile Include="Base\RelayCommand.cs" />
     <Compile Include="Base\RelayParameterizedCommand.cs" />
-    <Compile Include="Design View Models\StoreDesignViewModel.cs" />
+    <Compile Include="Design View Models\StoreListDesignModel.cs" />
+    <Compile Include="Design View Models\StoreListItemDesignModel.cs" />
     <Compile Include="Expressions\ExpressionHelpers.cs" />
     <Compile Include="IoC\IoC.cs" />
     <Compile Include="LoginViewModel.cs" />
@@ -64,6 +65,8 @@
     <Compile Include="Base\ViewModelBase.cs" />
     <Compile Include="RegisterViewModel.cs" />
     <Compile Include="Security\SecureStringHelpers.cs" />
+    <Compile Include="StoreListItemViewModel.cs" />
+    <Compile Include="StoreListViewModel.cs" />
     <Compile Include="StoreViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

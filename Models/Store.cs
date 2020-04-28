@@ -4,66 +4,17 @@ namespace Models
 {
     public class Store
     {
-        #region Private Fields
-        private Address _address;
-        private string _pictureUrl;
-        private string _phone;
-        private List<Icecream> _icecreams;
-        private Score _adminScore;
-        private List<Score> _usersScores;
-        #endregion
-
         #region Public Properties
-        public Address Address
-        {
-            get
-            {
-                return _address;
-            }
 
-            set
-            {
-                _address = value;
-            }
-        }
-        public string PictureUrl
-        {
-            get
-            {
-                return _pictureUrl;
-            }
-
-            set
-            {
-                _pictureUrl = value;
-            }
-        }
+        public Address Address { get; set; }
+        public string PictureUrl { get; set; }
         public string Phone { get; set; }
-        public List<Icecream> Icecreams
-        {
-            get { return _icecreams; }
-        }
-        public Score AdminScore
-        {
-            get
-            {
-                return _adminScore;
-            }
-
-            set
-            {
-                _adminScore = value;
-            }
-        }
-        public List<Score> UsersScores
-        {
-            get
-            {
-                return _usersScores;
-            }
-        }
+        public List<Icecream> Icecreams { get; set; }
+        public Score AdminScore { get; set; }
+        public List<Score> UsersScores { get; set; }
         public string Name { get; set; }
         public int Stars { get; set; }
+
         #endregion
 
         //Constructors

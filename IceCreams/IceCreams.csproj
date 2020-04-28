@@ -81,6 +81,12 @@
     <Compile Include="Pages\StorePage.xaml.cs">
       <DependentUpon>StorePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="User Controls\StoreListControl.xaml.cs">
+      <DependentUpon>StoreListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\StoreListItemControl.xaml.cs">
+      <DependentUpon>StoreListItemControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ValueConverters\ApplicationPageValueConverter.cs" />
     <Compile Include="ValueConverters\BooleanToVisibilityConverter.cs" />
     <Compile Include="ValueConverters\ImageSourceConverter.cs" />
@@ -135,6 +141,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Texts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User Controls\StoreListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User Controls\StoreListItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,6 +234,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\image_not_found.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Items\icecream_item1.jpg" />
+    <Resource Include="Images\Items\icecream_item2.jpg" />
+    <Resource Include="Images\Items\icecream_item3.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

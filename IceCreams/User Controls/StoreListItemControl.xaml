@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="IceCreams.StoreListItemControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IceCreams"
+             xmlns:vm="clr-namespace:ViewModels;assembly=ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="200"
+             Height="300" Width="200">
+    
+    <UserControl.Resources>
+        <!-- Item Image Resource -->
+        <BitmapImage x:Key="ImageDesignSource" UriSource="" BaseUri="/IceCreams;component/Images/items/icecream_item2.jpg"/>
+
+        <!-- Control Content -->
+        <Style x:Key="ContentStyle" TargetType="{x:Type ContentControl}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ContentControl}">
+                        <Grid Background="#FFF3F3F3" Margin="10">
+                            <Grid.Effect>
+                                <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" ShadowDepth="1"/>
+                            </Grid.Effect>
+
+                            <StackPanel>
+
+                                <!-- Item Name -->
+                                <TextBlock Text="{Binding Name}" Foreground="#FF569BFF"
+                                           Margin="10" FontFamily="Showcard Gothic" FontSize="12" 
+                                           TextAlignment="Center"/>
+
+                                <!-- Item Image -->
+                                <Image Source="{Binding ImageUrl,
+                                                        FallbackValue={StaticResource ImageDesignSource},
+                                                        TargetNullValue={StaticResource ImageDesignSource}}" 
+                                       Stretch="UniformToFill" MaxHeight="180"/>
+
+                                <!-- Item Description -->
+                                <TextBlock Text="{Binding Description}" Margin="5" TextWrapping="Wrap" 
+                                           FontFamily="Champagne &amp; Limousines" FontSize="10" 
+                                           TextAlignment="Center" MaxHeight="30" TextTrimming="CharacterEllipsis" ToolTip="{Binding Description}"/>
+
+                                <!-- Item Price -->
+                                <TextBlock Text="{Binding Price}" Margin="5 0 5 0"
+                                           FontSize="20" FontFamily="Champagne &amp; Limousines"
+                                           TextAlignment="Center"
+                                           Foreground="Red" />
+
+                            </StackPanel>
+
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+    </UserControl.Resources>
+
+
+    <ContentControl d:DataContext="{x:Static vm:StoreListItemDesignModel.Instance}"
+                    Style="{StaticResource ContentStyle}"/>
+</UserControl>

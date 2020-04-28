@@ -1,60 +1,23 @@
 ﻿
 namespace Models
 {
-    #region Enums
-    public enum PrutitionalValue
+    #region Structs
+    public struct PrutitionalValue
     {
-        Protein,
-        Energy,
-        Fat
+        public float Proteins; // חלבון 
+        public float Calories; // קלוריות
+        public float Fat; // שומן
     }
     #endregion
 
     public class Icecream
     {
-        #region Private Fields
-        private string _description;
-        private string _pictureUrl;
-        private PrutitionalValue _prutitionalValue;
-        #endregion
-
         #region Public Properties
-        public string Description
-        {
-            get
-            {
-                return _description;
-            }
 
-            set
-            {
-                _description = value;
-            }
-        }
-        public string PictureUrl
-        {
-            get
-            {
-                return _pictureUrl;
-            }
+        public string Description { get; set; }
+        public string ImageUrl { get; set; }
+        public PrutitionalValue PrutitionalValue { get; set; }
 
-            set
-            {
-                _pictureUrl = value;
-            }
-        }
-        public PrutitionalValue PrutitionalValue
-        {
-            get
-            {
-                return _prutitionalValue;
-            }
-
-            set
-            {
-                _prutitionalValue = value;
-            }
-        }
         #endregion
 
         //Constructors

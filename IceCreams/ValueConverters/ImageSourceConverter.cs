@@ -21,31 +21,13 @@ namespace IceCreams
                 {
                     string str = (string)value;
 
-                    try
-                    {
-                        result = new BitmapImage(new Uri(str, UriKind.RelativeOrAbsolute));
-                    }
-                    catch (System.IO.IOException)
-                    {
-                        return new BitmapImage(new Uri(@"pack://application:,,,/Images/image_not_found.png", UriKind.RelativeOrAbsolute));
-                    }
-
-                    return result;
+                    return new BitmapImage(new Uri(str, UriKind.RelativeOrAbsolute));
                 }
                 else if (value is Uri)
                 {
                     Uri uri = (Uri)value;
 
-                    try
-                    {
-                        result = new BitmapImage(uri);
-                    }
-                    catch (System.IO.IOException)
-                    {
-                        return new BitmapImage(new Uri(@"pack://application:,,,/Images/image_not_found.png", UriKind.RelativeOrAbsolute));
-                    }
-
-                    return result;
+                    return new BitmapImage(uri);
                 }
             }
 
