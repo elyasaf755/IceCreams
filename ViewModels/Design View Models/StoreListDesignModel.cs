@@ -1,12 +1,10 @@
-﻿using Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ViewModels
 {
+    /// <summary>
+    /// The design-time data for <see cref="StoreListViewModel"/>
+    /// </summary>
     public class StoreListDesignModel : StoreListViewModel
     {
         #region Singleton
@@ -18,34 +16,38 @@ namespace ViewModels
 
         #endregion
 
+        #region Constructor
+
         public StoreListDesignModel()
         {
             Items = new List<StoreListItemViewModel>
             {
                 new StoreListItemViewModel
                 {
-                    Name = "Vanilla Icecream1",
-                    ImageUrl = @"pack://application:,,,/Images/Items/icecream_item1.jpg",
-                    Description = "Best vanilla1 icecream there is",
-                    Price = "10.99"
+                    Name = "Design-Time Name 1",
+                    ImageUrl = @"/IceCreams;component/Images/Items/icecream_item1.jpg",
+                    Description = "Design-Time Description 1",
+                    Price = "Design-Time Price 1"
                 },
 
                 new StoreListItemViewModel
                 {
-                    Name = "Vanilla Icecream2",
-                    ImageUrl = @"pack://application:,,,/Images/Items/icecream_item2.jpg",
-                    Description = "Best vanilla2 icecream there is",
-                    Price = "20.99"
+                    Name = "Design-Time Name 2",
+                    ImageUrl = @"/IceCreams;component/Images/Items/icecream_item2.jpg",
+                    Description = "Design-Time Description 2",
+                    Price = "Design-Time Price 2"
                 },
 
                 new StoreListItemViewModel
                 {
-                    Name = "Vanilla Icecream3",
-                    ImageUrl = @"pack://application:,,,/Images/Items/icecream_item3.jpg",
-                    Description = "Best vanilla3 icecream there is",
-                    Price = "30.99"
+                    Name = "Design-Time Name 3",
+                    ImageUrl = @"/IceCreams;component/Images/Items/icecream_item3.jpg",
+                    Description = "Design-Time Description 3",
+                    Price = "Design-Time Price 3"
                 },
             };
-        }
+        } 
+
+        #endregion
     }
 }

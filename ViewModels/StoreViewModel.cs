@@ -63,35 +63,35 @@ namespace ViewModels
                     Country = "Israel",
                 },
 
-                ImageUrl = @"pack://application:,,,/images/shop1.png",
+                ImageUrl = @"/IceCreams;component/Images/shop1.jpg",
                 Phone = "0546401267",
                 Icecreams = new List<Icecream>
                 {
                     new Icecream
                     {
                         Name = "icecream 1",
-                        ImageUrl = @"pack://application:,,,/images/shop1.jpg",
+                        ImageUrl = @"/IceCreams;component/Images/Items/icecream_item1.jpg",
                         Description = "my icecream 1",
                         Price = "10",
                     },
                     new Icecream
                     {
                         Name = "icecream 2",
-                        ImageUrl = @"pack://application:,,,/images/items/icecream_item2.jpg",
+                        ImageUrl = @"/IceCreams;component/Images/Items/icecream_item2.jpg",
                         Description = "my icecream 2",
                         Price = "20",
                     },
                     new Icecream
                     {
                         Name = "icecream 3",
-                        ImageUrl = @"pack://application:,,,/images/items/icecream_item3.jpg",
+                        ImageUrl = @"/IceCreams;component/Images/Items/icecream_item3.jpg",
                         Description = "my icecream 3",
                         Price = "30",
                     },
                     new Icecream
                     {
-                        Name = "icecream 3",
-                        ImageUrl = @"pack://application:,,,/images/items/icecream_item3.jpg",
+                        Name = "icecream 4",
+                        ImageUrl = @"/IceCreams;component/Images/Items/icecream_item1.jpg",
                         Description = "my icecream 4",
                         Price = "40",
                     },

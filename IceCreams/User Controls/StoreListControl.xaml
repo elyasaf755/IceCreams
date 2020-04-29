@@ -6,9 +6,10 @@
              xmlns:local="clr-namespace:IceCreams"
              xmlns:vm="clr-namespace:ViewModels;assembly=ViewModels"
              mc:Ignorable="d"
-             d:DesignHeight="350" d:DesignWidth="700">
+             d:DesignHeight="350" d:DesignWidth="700"
+             d:DataContext="{x:Static vm:StoreListDesignModel.Instance}">
     
-    <Grid d:DataContext="{x:Static vm:StoreListDesignModel.Instance}">
+    <Grid>
         <ScrollViewer VerticalAlignment="Top" CanContentScroll="True" 
                       VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto"
                       MinHeight="350" MaxWidth="700">
@@ -34,7 +35,6 @@
 
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ListBoxItem}">
-                        
                         <Setter Property="LayoutTransform">
                             <Setter.Value>
                                 <ScaleTransform x:Name="transform" />
@@ -60,4 +60,5 @@
             </ListBox>
         </ScrollViewer>
     </Grid>
+    
 </UserControl>

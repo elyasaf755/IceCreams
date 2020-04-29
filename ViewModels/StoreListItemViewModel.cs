@@ -9,11 +9,6 @@ namespace ViewModels
 {
     public class StoreListItemViewModel : ViewModelBase
     {
-        /// <summary>
-        /// A single instance of the view model
-        /// </summary>
-        public static StoreListItemViewModel Instance => new StoreListItemViewModel();
-
         #region Private Fields
 
         private string _price;
