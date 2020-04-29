@@ -7,7 +7,7 @@
              xmlns:vm="clr-namespace:ViewModels;assembly=ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="200"
-             MinHeight="300" MinWidth="200" 
+             Height="300" Width="200" 
              d:DataContext="{x:Static vm:StoreListItemDesignModel.Instance}">
 
     <UserControl.Resources>
@@ -38,7 +38,7 @@
                                 <!-- Item Description -->
                                 <TextBlock Text="{Binding Description}" Margin="5" TextWrapping="Wrap" 
                                            FontFamily="Champagne &amp; Limousines" FontSize="10" 
-                                           TextAlignment="Center" MinHeight="12"
+                                           TextAlignment="Center" Height="12" Width="170"
                                            TextTrimming="CharacterEllipsis" 
                                            ToolTip="{Binding Description}"/>
 

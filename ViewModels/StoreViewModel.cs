@@ -55,7 +55,7 @@ namespace ViewModels
 
             CurrentStore = new Store
             {
-                Name = "My Store",
+                Name = "My Icecream Store",
                 Address = new Address
                 {
                     Street = "Sufa 4",
@@ -85,7 +85,7 @@ namespace ViewModels
                     {
                         Name = "icecream 3",
                         ImageUrl = @"/IceCreams;component/Images/Items/icecream_item3.jpg",
-                        Description = "my icecream 3",
+                        Description = "my icecream 3 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
                         Price = "30",
                     },
                     new Icecream

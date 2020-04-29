@@ -32,23 +32,27 @@
                 <ColumnDefinition Width="200" />
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
-            <!-- Store Logo -->
-            <Image Stretch="Fill" VerticalAlignment="Top" HorizontalAlignment="Left"
-               Source="{Binding CurrentStore.PictureUrl, 
-                                Converter={local:ImageSourceConverter}, 
-                                FallbackValue={StaticResource ImageDesignSource}, 
-                                TargetNullValue={StaticResource ImageDesignSource}}" />
 
             <!-- Store Header -->
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Margin="0 0 40 0">
-                
-                <!-- Store Name -->
-                <TextBlock Text="{Binding CurrentStore.Name, 
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Grid.ColumnSpan="2">
+
+                <StackPanel Orientation="Horizontal" Margin="0 50 0 0">
+                    
+                    <!-- Store Logo -->
+                    <Image Stretch="Fill" Margin="0 0 20 0"
+                           Height="80" Width="80" VerticalAlignment="Center"
+                           Source="{Binding CurrentStore.PictureUrl, 
+                                            Converter={local:ImageSourceConverter}, 
+                                            FallbackValue={StaticResource ImageDesignSource}, 
+                                            TargetNullValue={StaticResource ImageDesignSource}}" />
+
+                    <!-- Store Name -->
+                    <TextBlock Text="{Binding CurrentStore.Name, 
                                           FallbackValue='ICECREAM STORE NAME',
                                           TargetNullValue='ICECREAM STORE NAME'}" 
-                           FontSize="50" FontFamily="Gabriola"
+                           FontSize="60" FontFamily="Gabriola" FontWeight="SemiBold"
                            VerticalAlignment="Center" HorizontalAlignment="Center" />
+                </StackPanel>
 
                 <!-- Store Address Line -->
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
