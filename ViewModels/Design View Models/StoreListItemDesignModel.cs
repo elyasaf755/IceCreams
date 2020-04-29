@@ -16,7 +16,7 @@ namespace ViewModels
         /// <summary>
         /// A single instance of the design model
         /// </summary>
-        public static StoreListItemDesignModel DesignInstance => new StoreListItemDesignModel();
+        public static StoreListItemDesignModel Instance => new StoreListItemDesignModel();
 
         #endregion
 

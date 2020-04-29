@@ -70,7 +70,7 @@
         </Grid>
 
         <!-- Page Content (Lower Row) -->
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" d:DataContext="{x:Static vm:StoreListDesignModel.Instance}">
             <local:StoreListControl />
         </Grid>
     </Grid>

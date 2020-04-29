@@ -6,19 +6,49 @@
              xmlns:local="clr-namespace:IceCreams"
              xmlns:vm="clr-namespace:ViewModels;assembly=ViewModels"
              mc:Ignorable="d"
-             d:DesignHeight="350" d:DesignWidth="700"
+             d:DesignHeight="500" d:DesignWidth="900"
              d:DataContext="{x:Static vm:StoreListDesignModel.Instance}">
     
-    <Grid>
+    <Viewbox>
         <ScrollViewer VerticalAlignment="Top" CanContentScroll="True" 
                       VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto"
-                      MinHeight="350" MaxWidth="700">
+                      Height="350" Width="634">
             
             <ListBox x:Name="MyListBox" ItemsSource="{Binding Items}" 
-                     HorizontalAlignment="Center" VerticalAlignment="Center" 
-                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                     Height="330" Width="634" Background="Transparent" BorderBrush="Transparent">
-                
+                     Height="350" Width="634" Background="Transparent" BorderBrush="Transparent">
+
+                <!-- Items OnMouseOver Scale Animation -->
+                <ListBox.Resources>
+                    <Style TargetType="{x:Type local:StoreListItemControl}">
+                        <Setter Property="RenderTransformOrigin" Value="0.5,0.5" />
+                        <Setter Property="RenderTransform">
+                            <Setter.Value>
+                                <ScaleTransform />
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1.1" Duration="0:0:.1" />
+                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1.1" Duration="0:0:.1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:.1" />
+                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:.1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListBox.Resources>
+
                 <!-- Items Type Definition -->
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -59,6 +89,6 @@
                 
             </ListBox>
         </ScrollViewer>
-    </Grid>
+    </Viewbox>
     
 </UserControl>
