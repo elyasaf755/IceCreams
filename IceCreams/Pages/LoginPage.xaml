@@ -28,7 +28,7 @@
 
             <!--Password-->
             <PasswordBox x:Name="PasswordPasswordBox" Tag="Password"
-                         Background="Transparent" />
+                         Background="Transparent" Margin="0 25 0 0"/>
 
             <!--Login Button-->
             <Button x:Name="LoginButton" Style="{StaticResource RegularButton}" 

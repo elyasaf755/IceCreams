@@ -12,22 +12,22 @@ namespace ViewModels
         Login = 0,
 
         /// <summary>
-        /// The email registeration page
+        /// The email registration page
         /// </summary>
         RegisterEmail = 1,
 
         /// <summary>
-        /// The date of birth registeration page
+        /// The date of birth registration page
         /// </summary>
         RegisterDate = 2,
 
         /// <summary>
-        /// The password registeration page
+        /// The password registration page
         /// </summary>
         RegisterPassword = 3,
 
         /// <summary>
-        /// The password registeration page
+        /// The password registration page
         /// </summary>
         Store = 4,
     }
