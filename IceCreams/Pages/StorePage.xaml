@@ -8,17 +8,14 @@
       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1080"
-      Title="{Binding CurrentStore.Name}">
+      Title="{Binding CurrentStore.Name}"
+      d:DataContext="{x:Static vm:StoreDesignModel.Instance}">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-
-    <Page.Resources>
-        <BitmapImage x:Key="ImageDesignSource" UriSource="pack://application:,,,/Images/shop4.png"/>
-    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -39,42 +36,35 @@
                 <StackPanel Orientation="Horizontal" Margin="0 50 0 0">
                     
                     <!-- Store Logo -->
-                    <Image Stretch="Fill" Margin="0 0 20 0"
-                           Height="80" Width="80" VerticalAlignment="Center"
-                           Source="{Binding CurrentStore.PictureUrl, 
-                                            Converter={local:ImageSourceConverter}, 
-                                            FallbackValue={StaticResource ImageDesignSource}, 
-                                            TargetNullValue={StaticResource ImageDesignSource}}" />
+                    <Image Stretch="UniformToFill" Margin="0 0 20 0"
+                           Height="80" Width="80"
+                           Source="{Binding CurrentStore.ImageUrl, 
+                                            Converter={local:ImageSourceConverter}}" />
 
                     <!-- Store Name -->
-                    <TextBlock Text="{Binding CurrentStore.Name, 
-                                          FallbackValue='ICECREAM STORE NAME',
-                                          TargetNullValue='ICECREAM STORE NAME'}" 
+                    <TextBlock Text="{Binding CurrentStore.Name}" 
                            FontSize="60" FontFamily="Gabriola" FontWeight="SemiBold"
                            VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    
                 </StackPanel>
 
                 <!-- Store Address Line -->
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <TextBlock Text="{StaticResource FontAwesomeLocationIcon}" Style="{StaticResource IconTextBlock}" Margin="0 0 5 5"/>
-                    <TextBlock Text="{Binding CurrentStore.Address, 
-                                              FallbackValue='Street, City, Country',
-                                              TargetNullValue='Street, City, Country'}" />
+                    <TextBlock Text="{Binding CurrentStore.Address}" />
                 </StackPanel>
 
                 <!-- Store Phone Number -->
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <TextBlock Text="{StaticResource FontAwesomePhoneIcon}" Style="{StaticResource IconTextBlock}" Margin="0 0 5 0"/>
-                    <TextBlock Text="{Binding CurrentStore.Phone, 
-                                              FallbackValue='Phone Number',
-                                              TargetNullValue='Phone Number'}" />
+                    <TextBlock Text="{Binding CurrentStore.Phone}" />
                 </StackPanel>
             </StackPanel>
 
         </Grid>
 
         <!-- Page Content (Lower Row) -->
-        <Grid Grid.Row="1" d:DataContext="{x:Static vm:StoreListDesignModel.Instance}">
+        <Grid Grid.Row="1">
             <local:StoreListControl />
         </Grid>
     </Grid>

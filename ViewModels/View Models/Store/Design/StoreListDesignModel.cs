@@ -3,7 +3,7 @@
 namespace ViewModels
 {
     /// <summary>
-    /// The design-time data for <see cref="StoreListViewModel"/>
+    /// The StoreListDesignModel data for <see cref="StoreListViewModel"/>
     /// </summary>
     public class StoreListDesignModel : StoreListViewModel
     {
@@ -24,26 +24,26 @@ namespace ViewModels
             {
                 new StoreListItemViewModel
                 {
-                    Name = "Design-Time Name 1",
+                    Name = "Store List Design Model 1",
                     ImageUrl = @"/IceCreams;component/Images/Items/icecream_item1.jpg",
-                    Description = "Design-Time Description 1",
-                    Price = "Design-Time Price 1"
+                    Description = "Item Description 1",
+                    Price = "10"
                 },
 
                 new StoreListItemViewModel
                 {
-                    Name = "Design-Time Name 2",
+                    Name = "Store List Design Model 2",
                     ImageUrl = @"/IceCreams;component/Images/Items/icecream_item2.jpg",
-                    Description = "Design-Time Description 2",
-                    Price = "Design-Time Price 2"
+                    Description = "Item Description 2",
+                    Price = "20"
                 },
 
                 new StoreListItemViewModel
                 {
-                    Name = "Design-Time Name 3",
+                    Name = "Store List Design Model 3",
                     ImageUrl = @"/IceCreams;component/Images/Items/icecream_item3.jpg",
-                    Description = "Design-Time Description 3",
-                    Price = "Design-Time Price 3"
+                    Description = "Item Description 3",
+                    Price = "30"
                 },
             };
         } 

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ViewModels
 {
@@ -24,10 +22,10 @@ namespace ViewModels
 
         public StoreListItemDesignModel()
         {
-            Name = "Design Time Name";
+            Name = "Store List Item Design Model";
             ImageUrl = @"/IceCreams;component/Images/Items/icecream_item1.jpg";
             Description = "Design Time Description";
-            Price = "Design Time Price";
+            Price = "20";
         }
 
         #endregion

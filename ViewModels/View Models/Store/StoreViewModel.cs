@@ -41,58 +41,58 @@ namespace ViewModels
 
         public async Task Loaded()
         {
-            //TODO: Remove this call
-            PopulateItems();
+            //TODO: Delete
+            PopulateStore();
 
             await Task.Delay(1);
-        } 
+        }
 
         #endregion
 
-        //TODO: Remove this
-        private void PopulateItems()
+        //TODO: Delete
+        private void PopulateStore()
         {
 
             CurrentStore = new Store
             {
-                Name = "My Icecream Store",
+                Name = "Store View Model",
                 Address = new Address
                 {
-                    Street = "Sufa 4",
-                    City = "Beit El",
-                    Country = "Israel",
+                    Street = "Street",
+                    City = "City",
+                    Country = "Country",
                 },
 
-                ImageUrl = @"/IceCreams;component/Images/shop1.jpg",
-                Phone = "0546401267",
+                ImageUrl = @"/IceCreams;component/Images/shop4.png",
+                Phone = "Phone Number",
                 Icecreams = new List<Icecream>
                 {
                     new Icecream
                     {
-                        Name = "icecream 1",
+                        Name = "Store View Model 1",
                         ImageUrl = @"/IceCreams;component/Images/Items/icecream_item1.jpg",
-                        Description = "my icecream 1",
+                        Description = "Item 1",
                         Price = "10",
                     },
                     new Icecream
                     {
-                        Name = "icecream 2",
+                        Name = "Store View Model 2",
                         ImageUrl = @"/IceCreams;component/Images/Items/icecream_item2.jpg",
-                        Description = "my icecream 2",
+                        Description = "Item 2",
                         Price = "20",
                     },
                     new Icecream
                     {
-                        Name = "icecream 3",
+                        Name = "Store View Model 3",
                         ImageUrl = @"/IceCreams;component/Images/Items/icecream_item3.jpg",
-                        Description = "my icecream 3 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                        Description = "Item 3",
                         Price = "30",
                     },
                     new Icecream
                     {
-                        Name = "icecream 4",
+                        Name = "Store View Model 4",
                         ImageUrl = @"/IceCreams;component/Images/Items/icecream_item1.jpg",
-                        Description = "my icecream 4",
+                        Description = "Item 4",
                         Price = "40",
                     },
                 },

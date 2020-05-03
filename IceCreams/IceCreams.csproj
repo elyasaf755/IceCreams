@@ -71,17 +71,20 @@
     <Compile Include="Attached Properties\AttachedPropertyBase.cs" />
     <Compile Include="Attached Properties\ButtonAttachedProperty.cs" />
     <Compile Include="Attached Properties\PasswordBoxAttachedProperties.cs" />
-    <Compile Include="Pages\LoginPage.xaml.cs">
+    <Compile Include="Pages\LoginRegister\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\PageBase.cs" />
-    <Compile Include="Pages\RegisterDatePage.xaml.cs">
+    <Compile Include="Pages\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Base\PageBase.cs" />
+    <Compile Include="Pages\LoginRegister\RegisterDatePage.xaml.cs">
       <DependentUpon>RegisterDatePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\RegisterPasswordPage.xaml.cs">
+    <Compile Include="Pages\LoginRegister\RegisterPasswordPage.xaml.cs">
       <DependentUpon>RegisterPasswordPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\RegisterEmailPage.xaml.cs">
+    <Compile Include="Pages\LoginRegister\RegisterEmailPage.xaml.cs">
       <DependentUpon>RegisterEmailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\StorePage.xaml.cs">
@@ -110,19 +113,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\LoginPage.xaml">
+    <Page Include="Pages\LoginRegister\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\RegisterDatePage.xaml">
+    <Page Include="Pages\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\LoginRegister\RegisterDatePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\RegisterPasswordPage.xaml">
+    <Page Include="Pages\LoginRegister\RegisterPasswordPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\RegisterEmailPage.xaml">
+    <Page Include="Pages\LoginRegister\RegisterEmailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
