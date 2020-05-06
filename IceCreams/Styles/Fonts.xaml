@@ -29,6 +29,8 @@
 
     <system:String x:Key="FontAwesomePhoneIcon">&#xf095;</system:String>
     <system:String x:Key="FontAwesomeLocationIcon">&#xf041;</system:String>
+    <system:String x:Key="FontAwesomeLeftIcon">&#xf060;</system:String>
+    <system:String x:Key="FontAwesomeRightIcon">&#xf061;</system:String>
     
 
 

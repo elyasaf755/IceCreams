@@ -13,7 +13,8 @@ namespace ViewModels
         #region Public Properties
 
         public Store CurrentStore { get; set; }
-        public List<StoreListItemViewModel> Items { get; set; } = new List<StoreListItemViewModel>();
+        //public List<StoreListItemViewModel> Items { get; set; } = new List<StoreListItemViewModel>();
+        public StoreListViewModel CurrentStoreListViewModel { get; set; } = new StoreListViewModel();
 
         #endregion
 
@@ -103,7 +104,7 @@ namespace ViewModels
 
             foreach (Icecream icecream in CurrentStore.Icecreams)
             {
-                Items.Add(new StoreListItemViewModel
+                CurrentStoreListViewModel.Items.Add(new StoreListItemViewModel
                 {
                     Name = icecream.Name,
                     ImageUrl = icecream.ImageUrl,
@@ -111,6 +112,8 @@ namespace ViewModels
                     Price = icecream.Price,
                 });
             }
+
+            //CurrentStoreListViewModel.Items = Items;
         }
     }
 }

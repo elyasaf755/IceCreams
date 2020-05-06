@@ -80,7 +80,7 @@ namespace ViewModels
 
             foreach (Icecream icecream in CurrentStore.Icecreams)
             {
-                Items.Add(new StoreListItemViewModel
+                CurrentStoreListViewModel.Items.Add(new StoreListItemViewModel
                 {
                     Name = icecream.Name,
                     ImageUrl = icecream.ImageUrl,

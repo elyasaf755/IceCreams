@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace ViewModels
 {
@@ -20,7 +21,7 @@ namespace ViewModels
 
         public StoreListDesignModel()
         {
-            Items = new List<StoreListItemViewModel>
+            Items = new ObservableCollection<StoreListItemViewModel>
             {
                 new StoreListItemViewModel
                 {

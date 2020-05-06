@@ -69,7 +69,8 @@
 
         <!-- Page Content (Lower Row) -->
         <Grid Grid.Row="1">
-            <local:StoreListControl />
+            <local:StoreListControl d:DataContext="{Binding CurrentStoreListViewModel}" 
+                                    DataContext="{Binding CurrentStoreListViewModel}"/>
         </Grid>
     </Grid>
 </local:PageBase>
