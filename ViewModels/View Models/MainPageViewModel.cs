@@ -22,6 +22,11 @@ namespace ViewModels
         public List<HorizontalListItemViewModel> Items { get; set; } = new List<HorizontalListItemViewModel>();
 
         /// <summary>
+        /// The current selected store
+        /// </summary>
+        public HorizontalListItemViewModel SelectedStore { get; set; }
+
+        /// <summary>
         /// The name of the store the user is looking for
         /// </summary>
         public string StoreName { get; set; }
@@ -60,6 +65,16 @@ namespace ViewModels
         /// </summary>
         public ICommand CityChangedCommand { get; set; }
 
+        /// <summary>
+        /// Fired when the user double clicked a store
+        /// </summary>
+        public ICommand OnMouseDoubleClickCommand { get; set; }
+
+        /// <summary>
+        /// Fired when store selection changed
+        /// </summary>
+        public ICommand SelectedStoreChangedCommand { get; set; }
+
         #endregion
 
         #region Public Constructor
@@ -71,6 +86,8 @@ namespace ViewModels
             StoreNameChangedCommand = new RelayCommand(async () => await StoreNameChanged());
             CountryChangedCommand = new RelayCommand(async () => await CountryNameChanged());
             CityChangedCommand = new RelayCommand(async () => await CityNameChanged());
+            SelectedStoreChangedCommand = new RelayParameterizedCommand(async (parameter) => await SelectedStoreChanged(parameter));
+            OnMouseDoubleClickCommand = new RelayCommand(async () => await OnMouseDoubleClick());
         }
 
         #endregion
@@ -119,6 +136,43 @@ namespace ViewModels
         {
             //Code here
 
+            await Task.Delay(1);
+        }
+
+        /// <summary>
+        /// The logic for <see cref="SelectedStoreChangedCommand"/>
+        /// </summary>
+        /// <returns></returns>
+        public async Task SelectedStoreChanged(object sender)
+        {
+            if (sender == null)
+                return;
+
+            if (!(sender is HorizontalListItemViewModel))
+                return;
+
+            SelectedStore = sender as HorizontalListItemViewModel;
+
+            await Task.Delay(1);
+        }
+
+        /// <summary>
+        /// The logic for <see cref="OnMouseDoubleClickCommand"/>
+        /// </summary>
+        /// <returns></returns>
+        public async Task OnMouseDoubleClick()
+        {
+            await MoveToStorePage();
+        }
+
+        /// <summary>
+        /// Takes the user to the register page
+        /// </summary>
+        /// <returns></returns>
+        public async Task MoveToStorePage()
+        {
+            //TODO: code here
+            throw new NotImplementedException();
             await Task.Delay(1);
         }
 

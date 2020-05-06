@@ -25,5 +25,17 @@ namespace IceCreams
         {
             InitializeComponent();
         }
+
+        private void Item_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender == null)
+                return;
+
+            if (!(sender is HorizontalListItemControl))
+                return;
+
+            var selectedItem = sender as HorizontalListItemControl;
+            var store = selectedItem.DataContext;
+        }
     }
 }

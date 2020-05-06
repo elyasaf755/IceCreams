@@ -27,6 +27,16 @@
         <i:EventTrigger EventName="TextChanged" SourceName="CityTextBox">
             <i:InvokeCommandAction Command="{Binding CityChangedCommand}" />
         </i:EventTrigger>
+
+        <i:EventTrigger EventName="SelectionChanged" SourceName="MyListBox">
+            <i:InvokeCommandAction Command="{Binding SelectedStoreChangedCommand}" 
+                                   CommandParameter="{Binding ElementName=MyListBox, Path=SelectedItem}"/>
+        </i:EventTrigger>
+
+        <i:EventTrigger EventName="MouseDoubleClick" SourceName="MyListBox">
+            <i:InvokeCommandAction Command="{Binding OnMouseDoubleClickCommand}" />
+        </i:EventTrigger>
+
     </i:Interaction.Triggers>
     
 
@@ -55,11 +65,12 @@
                      Tag="CITY" Text="{Binding City}"/>
         </StackPanel>
 
-        <ItemsControl Grid.Column="1" ItemsSource="{Binding Items}" 
-                      ScrollViewer.VerticalScrollBarVisibility="Hidden">
+        <ListBox Grid.Column="1" ItemsSource="{Binding Items}" 
+                 x:Name="MyListBox"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 
             <!-- Items OnMouseOver Scale Animation -->
-            <ItemsControl.Resources>
+            <ListBox.Resources>
                 <Style TargetType="{x:Type local:HorizontalListItemControl}">
                     <Setter Property="RenderTransformOrigin" Value="0.5,0.5" />
                     <Setter Property="RenderTransform">
@@ -88,31 +99,21 @@
                         </Trigger>
                     </Style.Triggers>
                 </Style>
-            </ItemsControl.Resources>
+            </ListBox.Resources>
 
-            <!-- Items Definition -->
-            <ItemsControl.ItemTemplate>
+            <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <local:HorizontalListItemControl Height="280" Margin="10"/>
+                    <StackPanel Orientation="Vertical">
+                        <local:HorizontalListItemControl Height="280" Margin="10"/>
+                    </StackPanel>
                 </DataTemplate>
-            </ItemsControl.ItemTemplate>
-
-            <!-- Wrap content to the next lines according to the free space -->
-            <ItemsControl.ItemsPanel>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel />
+                    <WrapPanel IsItemsHost="True" Orientation="Horizontal"  />
                 </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
+            </ListBox.ItemsPanel>
+        </ListBox>
 
-            <!-- Make the ItemsControl scrollable -->
-            <ItemsControl.Template>
-                <ControlTemplate>
-                    <ScrollViewer>
-                        <ItemsPresenter />
-                    </ScrollViewer>
-                </ControlTemplate>
-            </ItemsControl.Template>
-
-        </ItemsControl>
     </Grid>
 </local:PageBase>
