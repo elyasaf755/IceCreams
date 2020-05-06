@@ -72,6 +72,8 @@
                         </Setter>
 
                         <Style.Triggers>
+
+                            <!-- Trigger fade effect -->
                             <EventTrigger RoutedEvent="Loaded">
                                 <EventTrigger.Actions>
                                     <BeginStoryboard>

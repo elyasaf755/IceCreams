@@ -2,7 +2,8 @@
 
 namespace ViewModels
 {
-    public class MainWindowViewModel
+    public class MainWindowViewModel : ViewModelBase
     {
+
     }
 }

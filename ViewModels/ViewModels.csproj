@@ -55,6 +55,13 @@
     <Compile Include="Base\IHavePassword.cs" />
     <Compile Include="Base\RelayCommand.cs" />
     <Compile Include="Base\RelayParameterizedCommand.cs" />
+    <Compile Include="View Models\Containers\HorizontalListPricedItemDesignModel.cs" />
+    <Compile Include="View Models\Containers\HorizontalListPricedItemViewModel.cs" />
+    <Compile Include="View Models\MainPageDesignModel.cs" />
+    <Compile Include="View Models\Containers\Base\Design\HorizontalListDesignModel.cs" />
+    <Compile Include="View Models\Containers\Base\Design\HorizontalListItemDesignModel.cs" />
+    <Compile Include="View Models\Containers\Base\HorizontalListItemViewModel.cs" />
+    <Compile Include="View Models\Containers\Base\HorizontalListViewModel.cs" />
     <Compile Include="View Models\Store\Design\StoreDesignModel.cs" />
     <Compile Include="View Models\Store\Design\StoreListDesignModel.cs" />
     <Compile Include="View Models\Store\Design\StoreListItemDesignModel.cs" />
@@ -83,7 +90,9 @@
       <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="View Models\Design\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.1.1\build\Fody.targets" Condition="Exists('..\packages\Fody.6.1.1\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

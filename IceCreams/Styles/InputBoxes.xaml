@@ -135,6 +135,194 @@
 
     </Style>
 
+    <!--TextBox Regular Float Style-->
+    <Style TargetType="{x:Type TextBox}" x:Key="RegularFloatTextBox">
+
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="Margin" Value="0 10 0 10" />
+        <Setter Property="BorderThickness" Value="0 0 0 1" />
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Height" Value="50" />
+        <Setter Property="Width" Value="250" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Background" Value="Transparent" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+
+                    <!-- Placeholder Float Animations -->
+                    <ControlTemplate.Resources>
+
+                        <!-- Enter Animations -->
+                        <Storyboard x:Key="enterAnim">
+                            
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="placeholder">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-26">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <QuinticEase EasingMode="EaseInOut"/>
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+
+                            <DoubleAnimation Storyboard.TargetName="placeholder" Duration="0:0:0.3" From="20" To="12"  Storyboard.TargetProperty="FontSize"/>
+
+                        </Storyboard>
+
+                        <!-- Exit Animations -->
+                        <Storyboard x:Key="exitAnim">
+                            
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="placeholder">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <QuinticEase EasingMode="EaseInOut"/>
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+
+                            <DoubleAnimation Storyboard.TargetName="placeholder" Duration="0:0:0.3" From="12" To="20"  Storyboard.TargetProperty="FontSize"/>
+                        </Storyboard>
+
+                    </ControlTemplate.Resources>
+
+                    <!-- TextBox Content -->
+                    <Grid>
+                        <Border x:Name="border" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="False" 
+                                          HorizontalScrollBarVisibility="Hidden" 
+                                          VerticalScrollBarVisibility="Hidden" />
+                        </Border>
+
+                        <TextBlock IsHitTestVisible="False"
+                                   Text="{TemplateBinding Tag}"
+                                   x:Name="placeholder"
+                                   Padding="{TemplateBinding Padding}"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                   Foreground="Gray">
+
+                            <TextBlock.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </TextBlock.RenderTransform>
+
+                        </TextBlock>
+
+                    </Grid>
+
+                    <!-- Triggers -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                        </Trigger>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" TargetName="border" Value="#FF7EB4EA"/>
+                        </Trigger>
+
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="BorderBrush" TargetName="border" Value="#FF569DE5"/>
+                        </Trigger>
+
+                        <!-- Placeholder Float Triggers -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value="" />
+                                <Condition Property="IsMouseOver" Value="False" />
+                                <Condition Property="IsKeyboardFocused" Value="False" />
+                            </MultiTrigger.Conditions>
+
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource exitAnim}" />
+                            </MultiTrigger.EnterActions>
+
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource enterAnim}" />
+                            </MultiTrigger.ExitActions>
+
+                        </MultiTrigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+    <!--TextBox Regular Placeholder Style-->
+    <Style TargetType="{x:Type TextBox}" x:Key="PlaceholderTextBox">
+
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="Margin" Value="0 10 0 10" />
+        <Setter Property="BorderThickness" Value="0 0 0 1" />
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Height" Value="50" />
+        <Setter Property="Width" Value="250" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Background" Value="Transparent" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBoxBase}">
+
+                    <Grid>
+
+                        <Border x:Name="border" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+
+                        <TextBlock IsHitTestVisible="False"
+                                   Text="{TemplateBinding Tag}"
+                                   x:Name="Placeholder"
+                                   Padding="{TemplateBinding Padding}"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                   Foreground="Gray"
+                                   >
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" Value="">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+
+                        </TextBlock>
+
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" TargetName="border" Value="#FF7EB4EA"/>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="BorderBrush" TargetName="border" Value="#FF569DE5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
     <!--PasswordBox Style-->
     <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource BaseStyle}">
 
