@@ -10,14 +10,13 @@
         <ResourceDictionary Source="InputBoxes.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <!-- Regular button -->
-    <Style x:Key="RegularButton" TargetType="{x:Type Button}">
+    <!-- Login Button -->
+    <Style x:Key="LoginButton" TargetType="{x:Type Button}">
 
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Margin" Value="0 10" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="FontWeight" Value="SemiBold" />
-        <Setter Property="FontStyle" Value="Italic" />
         <Setter Property="FontSize" Value="18" />
 
         <Setter Property="local:IsBusyProperty.Value" Value="False" />
@@ -25,7 +24,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ButtonBase}">
-                    
+
                     <Border x:Name="border"
                             CornerRadius="10"
                             BorderBrush="{TemplateBinding BorderBrush}"
@@ -52,7 +51,7 @@
                         </Grid>
 
                     </Border>
-                    
+
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" TargetName="border" Value="#FFFF4040"/>
@@ -63,14 +62,18 @@
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Background" TargetName="border" Value="Gray"/>
                         </Trigger>
+                        <Trigger Property="local:IsBusyProperty.Value" Value="True">
+                            <Setter TargetName="border" Property="Width" Value="{Binding ElementName=border, Path=ActualHeight}" />
+                            <Setter TargetName="border" Property="CornerRadius" Value="17" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
-                    
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-    
-    <!-- Text button -->
+
+    <!-- Text Button -->
     <Style x:Key="TextButton" TargetType="{x:Type Button}">
 
         <Setter Property="Background" Value="Transparent" />

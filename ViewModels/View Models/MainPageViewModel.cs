@@ -41,6 +41,9 @@ namespace ViewModels
         /// </summary>
         public string City { get; set; }
 
+        // TODO: DELETE
+        public string Text { get; set; }
+
         #endregion
 
         #region Commands
@@ -113,6 +116,7 @@ namespace ViewModels
         public async Task StoreNameChanged()
         {
             //Code here
+            Text = "Store Name Changed";
 
             await Task.Delay(1);
         }
@@ -124,6 +128,7 @@ namespace ViewModels
         public async Task CountryNameChanged()
         {
             //Code here
+            Text = "Country Name Changed";
 
             await Task.Delay(1);
         }
@@ -135,6 +140,7 @@ namespace ViewModels
         public async Task CityNameChanged()
         {
             //Code here
+            Text = "City Name Changed";
 
             await Task.Delay(1);
         }
@@ -172,7 +178,7 @@ namespace ViewModels
         public async Task MoveToStorePage()
         {
             //TODO: code here
-            throw new NotImplementedException();
+
             await Task.Delay(1);
         }
 

@@ -7,7 +7,7 @@
       xmlns:local="clr-namespace:IceCreams"
       xmlns:vm="clr-namespace:ViewModels;assembly=ViewModels"
       mc:Ignorable="d"
-      Title="Login Page" d:DesignHeight="720" d:DesignWidth="1080">
+      Title="Login Page" d:DesignHeight="675" d:DesignWidth="1280">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -16,48 +16,44 @@
         </Grid.ColumnDefinitions>
 
         <!--Left Grid-->
-        <Grid Grid.Column="0">
+        <StackPanel Grid.Column="0">
             <!--Header TextBlock-->
-            <TextBlock Text="Sign in with your&#x0a;Ice Creams account" VerticalAlignment="Top" HorizontalAlignment="Center" 
+            <TextBlock Text="Sign in with your&#x0a;Ice Creams account"
                    TextAlignment="Center" FontSize="30" FontWeight="Bold" 
                    FontStyle="Italic" Margin="0 80 0 0"/>
 
             <!--Email-->
-            <TextBox x:Name="EmailTextBox" Tag="Email" Text="{Binding Email}"
-                     Margin="0,-100,0,10" />
+            <TextBox x:Name="EmailTextBox" Tag="Email" 
+                     Text="{Binding Email}" Margin="0 100 0 0" />
 
             <!--Password-->
             <PasswordBox x:Name="PasswordPasswordBox" Tag="Password"
                          Background="Transparent" Margin="0 25 0 0"/>
 
             <!--Login Button-->
-            <Button x:Name="LoginButton" Style="{StaticResource RegularButton}" 
-                    Content="Login" Height="35" Width="100" Margin="88,300,87,115" 
+            <Button x:Name="LoginButton" Style="{StaticResource LoginButton}"
+                    Content="Login" Height="35" Width="100" Margin="0 50 0 0" 
                     local:IsBusyProperty.Value="{Binding IsLoginRunning}"
                     Command="{Binding LoginCommand}"
                     CommandParameter="{Binding ElementName=MyLoginPage}"
                     IsDefault="True"/>
 
-            <!--Create Account & Can't Sign In? Text Blocks-->
-            <StackPanel Margin="0,575,0,0" Height="auto" >
-
-                <!--Create Account TextButton-->
-                <Button x:Name="CreateAccountButton" Style="{StaticResource TextButton}"
-                        Content="CREATE ACCOUNT" Margin="50 10 0 0" 
+            <!--Create Account TextButton-->
+            <Button x:Name="CreateAccountButton" Style="{StaticResource TextButton}"
+                        Content="CREATE ACCOUNT" Margin="50 127 0 0" 
                         Command="{Binding MoveToRegisterPageCommand}" />
 
-                <!--Can't Sign In? TextButton-->
-                <Button x:Name="CantSignInButton" Style="{StaticResource TextButton}"
+            <!--Can't Sign In? TextButton-->
+            <Button x:Name="CantSignInButton" Style="{StaticResource TextButton}"
                         Content="CAN'T SIGN IN?" Margin="50 0 0 0" />
-                
-            </StackPanel>
-        </Grid>
-        
+            
+        </StackPanel>
+
         <!--Right Grid-->
         <Grid Grid.Column="1">
             <Image Stretch="Fill" Source="/IceCreams;component/Images/icecreams1.jpg"/>
         </Grid>
-        
+
     </Grid>
-    
+
 </local:PageBase>

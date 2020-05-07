@@ -10,10 +10,19 @@ namespace ViewModels
 {
     public class StoreListViewModel : ViewModelBase
     {
+        /// <summary>
+        /// The items collection
+        /// </summary>
         public ObservableCollection<StoreListItemViewModel> Items { get; set; } = new ObservableCollection<StoreListItemViewModel>();
 
+        /// <summary>
+        /// Fired when the left arrow is clicked
+        /// </summary>
         public ICommand LeftButtonCommand { get; set; }
 
+        /// <summary>
+        /// Fired when the right arrow is clicked
+        /// </summary>
         public ICommand RightButtonCommand { get; set; }
 
         public StoreListViewModel()

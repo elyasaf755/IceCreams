@@ -46,9 +46,11 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
+        <!-- Search Filters -->
         <StackPanel Grid.Column="0" 
                     HorizontalAlignment="Center" VerticalAlignment="Top">
-            
+
+            <!-- Store Name Filter -->
             <TextBox x:Name="StoreNameTextBox" 
                      Style="{StaticResource RegularFloatTextBox}"
                      Tag="STORE NAME" Margin="0 40 0 0" Text="{Binding StoreName}"/>
@@ -56,18 +58,25 @@
             <Label Content="Store Address" HorizontalAlignment="Center"
                    FontSize="20" FontWeight="Bold" Margin="0 40 0 10"/>
 
+            <!-- Country Filter -->
             <TextBox x:Name="CountryTextBox"
                      Style="{StaticResource RegularFloatTextBox}"
                      Tag="COUNTRY" Text="{Binding Country}"/>
 
+            <!-- City Filter -->
             <TextBox x:Name="CityTextBox"
                      Style="{StaticResource RegularFloatTextBox}"
                      Tag="CITY" Text="{Binding City}"/>
+
+            <!-- TODO: Delete -->
+            <TextBox Style="{StaticResource RegularFloatTextBox}" Tag="TEST" Text="{Binding Text}" />
         </StackPanel>
 
+        <!-- Stores List Container -->
         <ListBox Grid.Column="1" ItemsSource="{Binding Items}" 
                  x:Name="MyListBox"
-                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 BorderThickness="0">
 
             <!-- Items OnMouseOver Scale Animation -->
             <ListBox.Resources>
@@ -101,6 +110,7 @@
                 </Style>
             </ListBox.Resources>
 
+            <!-- ListBoxItem Definition -->
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
@@ -108,11 +118,15 @@
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+            
+            <!-- Wrap items to the next lines when there is no more 
+                 space available for more items in the current line -->
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel IsItemsHost="True" Orientation="Horizontal"  />
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
+            
         </ListBox>
 
     </Grid>

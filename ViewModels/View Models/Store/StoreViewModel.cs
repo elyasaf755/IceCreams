@@ -12,18 +12,15 @@ namespace ViewModels
     {
         #region Public Properties
 
+        /// <summary>
+        /// The store that the user is currently viewing
+        /// </summary>
         public Store CurrentStore { get; set; }
-        //public List<StoreListItemViewModel> Items { get; set; } = new List<StoreListItemViewModel>();
-        public StoreListViewModel CurrentStoreListViewModel { get; set; } = new StoreListViewModel();
-
-        #endregion
-
-        #region Commands
 
         /// <summary>
-        /// The command to login
+        /// The view model for the StoreListControl, It holds all of the store's items.
         /// </summary>
-        public ICommand LoadedCommand { get; set; }
+        public StoreListViewModel CurrentStoreListViewModel { get; set; } = new StoreListViewModel();
 
         #endregion
 
@@ -31,21 +28,8 @@ namespace ViewModels
 
         public StoreViewModel()
         {
-            // Create commands
-            LoadedCommand = new RelayCommand(async () => await Loaded());
-        }
-
-        #endregion
-
-
-        #region Async Methods
-
-        public async Task Loaded()
-        {
-            //TODO: Delete
+            // TODO: Delete
             PopulateStore();
-
-            await Task.Delay(1);
         }
 
         #endregion

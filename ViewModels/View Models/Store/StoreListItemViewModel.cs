@@ -17,9 +17,24 @@ namespace ViewModels
 
         #region Public Properties
 
+        /// <summary>
+        /// Item's name
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Item's image path
+        /// </summary>
         public string ImageUrl { get; set; }
+
+        /// <summary>
+        /// Item's description
+        /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Item's price
+        /// </summary>
         public string Price
         {
             get => _price == null? null : string.Format("${0}", _price);

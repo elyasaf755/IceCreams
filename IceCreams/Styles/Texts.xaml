@@ -6,14 +6,16 @@
     <Style TargetType="{x:Type TextBlock}" x:Key="SpinningText" BasedOn="{StaticResource BaseTextBlockStyle}">
 
         <Setter Property="FontFamily" Value="{StaticResource FontAwesome}" />
-        
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+
         <!--The Spinner Icon-->
-        <Setter Property="Text" Value="&#xf110;" />
+        <Setter Property="Text" Value="{StaticResource FontAwesomeRefreshIcon}" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="RenderTransformOrigin" Value="0.5, 0.5" />
         <Setter Property="RenderTransform">
             <Setter.Value>
-                <RotateTransform></RotateTransform>
+                <RotateTransform />
             </Setter.Value>
         </Setter>
 
