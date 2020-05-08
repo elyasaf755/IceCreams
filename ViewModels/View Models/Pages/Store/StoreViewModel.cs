@@ -10,17 +10,31 @@ namespace ViewModels
 {
     public class StoreViewModel : ViewModelBase
     {
+        #region Private Properties
+
+        private Store _currentStore;
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>
         /// The store that the user is currently viewing
         /// </summary>
-        public Store CurrentStore { get; set; }
+        public Store CurrentStore
+        {
+            get => _currentStore;
+            set
+            {
+                _currentStore = value;
+                PopulateItems();
+            }
+        }
 
         /// <summary>
-        /// The view model for the StoreListControl, It holds all of the store's items.
+        /// The view model for the HorizontalListControl, It holds all of the store's items.
         /// </summary>
-        public StoreListViewModel CurrentStoreListViewModel { get; set; } = new StoreListViewModel();
+        public HorizontalListViewModel CurrentStoreListViewModel { get; set; } = new HorizontalListViewModel();
 
         #endregion
 
@@ -29,7 +43,28 @@ namespace ViewModels
         public StoreViewModel()
         {
             // TODO: Delete
-            PopulateStore();
+            //PopulateStore();
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void PopulateItems()
+        {
+            if (CurrentStore == null || CurrentStore.Icecreams == null)
+                return;
+
+            foreach (Icecream icecream in CurrentStore.Icecreams)
+            {
+                CurrentStoreListViewModel.Items.Add(new HorizontalListPricedItemViewModel
+                {
+                    UpperHeader = icecream.Name,
+                    ImageUrl = icecream.ImageUrl,
+                    Description = icecream.Description,
+                    LowerHeader = icecream.Price,
+                });
+            }
         }
 
         #endregion
@@ -88,12 +123,12 @@ namespace ViewModels
 
             foreach (Icecream icecream in CurrentStore.Icecreams)
             {
-                CurrentStoreListViewModel.Items.Add(new StoreListItemViewModel
+                CurrentStoreListViewModel.Items.Add(new HorizontalListPricedItemViewModel
                 {
-                    Name = icecream.Name,
+                    UpperHeader = icecream.Name,
                     ImageUrl = icecream.ImageUrl,
                     Description = icecream.Description,
-                    Price = icecream.Price,
+                    LowerHeader = icecream.Price,
                 });
             }
 

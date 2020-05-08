@@ -9,7 +9,7 @@ namespace ViewModels
         /// <summary>
         /// The current page of the application
         /// </summary>
-        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Store;
+        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.MainPage;
 
         /// <summary>
         /// The view model to use for the current page when the CurrentPage changes
@@ -24,8 +24,8 @@ namespace ViewModels
         /// <summary>
         /// Navigates to the specified page
         /// </summary>
-        /// <param name="page">The page to go to</param>
-        /// <param name="viewModel">The view model, if any, to set explicitly to the new page</param>
+        /// <param name="page">The target page</param>
+        /// <param name="viewModel">The view model for the page</param>
         public void GoToPage(ApplicationPage page, ViewModelBase viewModel = null)
         {
 
@@ -37,6 +37,8 @@ namespace ViewModels
 
             // Set the current page
             CurrentPage = page;
+
+            CurrentPageViewModel = viewModel;
 
             // If the page hasn't changed, fire off notification
             // So pages still update if just the view model has changed

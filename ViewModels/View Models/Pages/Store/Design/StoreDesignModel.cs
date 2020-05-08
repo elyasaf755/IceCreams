@@ -80,12 +80,12 @@ namespace ViewModels
 
             foreach (Icecream icecream in CurrentStore.Icecreams)
             {
-                CurrentStoreListViewModel.Items.Add(new StoreListItemViewModel
+                CurrentStoreListViewModel.Items.Add(new HorizontalListPricedItemViewModel
                 {
-                    Name = icecream.Name,
+                    UpperHeader = icecream.Name,
                     ImageUrl = icecream.ImageUrl,
                     Description = icecream.Description,
-                    Price = icecream.Price,
+                    LowerHeader = icecream.Price,
                 });
             }
         }

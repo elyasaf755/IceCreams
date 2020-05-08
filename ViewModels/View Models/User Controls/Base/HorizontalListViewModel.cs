@@ -8,12 +8,12 @@ using System.Windows.Input;
 
 namespace ViewModels
 {
-    public class StoreListViewModel : ViewModelBase
+    public class HorizontalListViewModel : ViewModelBase
     {
         /// <summary>
         /// The items collection
         /// </summary>
-        public ObservableCollection<StoreListItemViewModel> Items { get; set; } = new ObservableCollection<StoreListItemViewModel>();
+        public ObservableCollection<HorizontalListItemViewModel> Items { get; set; } = new ObservableCollection<HorizontalListItemViewModel>();
 
         /// <summary>
         /// Fired when the left arrow is clicked
@@ -25,7 +25,7 @@ namespace ViewModels
         /// </summary>
         public ICommand RightButtonCommand { get; set; }
 
-        public StoreListViewModel()
+        public HorizontalListViewModel()
         {
             LeftButtonCommand = new RelayCommand(async () => await LeftButtonClick());
             RightButtonCommand = new RelayCommand(async () => await RightButtonClick());

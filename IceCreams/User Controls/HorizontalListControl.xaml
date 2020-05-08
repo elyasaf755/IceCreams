@@ -1,21 +1,42 @@
 ﻿<UserControl x:Class="IceCreams.HorizontalListControl"
+             x:Name="MyStoreListControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IceCreams"
              xmlns:vm="clr-namespace:ViewModels;assembly=ViewModels"
-             mc:Ignorable="d" 
-             d:DesignHeight="175" d:DesignWidth="550"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             mc:Ignorable="d"
+             d:DesignHeight="500" d:DesignWidth="900"
              d:DataContext="{x:Static vm:HorizontalListDesignModel.Instance}">
-    <Grid>
-        <Viewbox>
-            <ScrollViewer  VerticalAlignment="Top" CanContentScroll="True"
-                      VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto"
-                      Height="175" Width="550">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Click" SourceName="LeftButton">
+            <i:InvokeCommandAction Command="{Binding LeftButtonCommand}" />
+        </i:EventTrigger>
+
+        <i:EventTrigger EventName="Click" SourceName="RightButton">
+            <i:InvokeCommandAction Command="{Binding RightButtonCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Viewbox>
+        <StackPanel Orientation="Horizontal">
+            
+            <!-- Left Arrow -->
+            <Button x:Name="LeftButton"
+                        Style="{StaticResource IconButton}" 
+                        Content="{StaticResource FontAwesomeLeftIcon}" />
+
+            <!-- Items List -->
+            <ScrollViewer VerticalAlignment="Top" CanContentScroll="True" 
+                      VerticalScrollBarVisibility="Disabled"
+                      Height="350" Width="685">
 
                 <ListBox x:Name="MyListBox" ItemsSource="{Binding Items}" 
-                     Height="175" Width="450" Background="Transparent" BorderBrush="Transparent">
+                     Height="350" Width="634" Background="Transparent" BorderBrush="Transparent"
+                         ScrollViewer.HorizontalScrollBarVisibility="Hidden">
 
                     <!-- Items OnMouseOver Scale Animation -->
                     <ListBox.Resources>
@@ -52,7 +73,7 @@
                     <!-- Items Type Definition -->
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <local:HorizontalListItemControl Height="150"/>
+                            <local:HorizontalListItemControl />
                         </DataTemplate>
                     </ListBox.ItemTemplate>
 
@@ -63,7 +84,6 @@
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
 
-                    <!-- Make items fade on page Loaded event -->
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ListBoxItem}">
                             <Setter Property="LayoutTransform">
@@ -73,6 +93,8 @@
                             </Setter>
 
                             <Style.Triggers>
+
+                                <!-- Trigger fade effect -->
                                 <EventTrigger RoutedEvent="Loaded">
                                     <EventTrigger.Actions>
                                         <BeginStoryboard>
@@ -88,7 +110,14 @@
                     </ListBox.ItemContainerStyle>
 
                 </ListBox>
+
             </ScrollViewer>
-        </Viewbox>
-    </Grid>
+            
+            <!-- Right Arrow -->
+            <Button x:Name="RightButton"
+                        Style="{StaticResource IconButton}" 
+                        Content="{StaticResource FontAwesomeRightIcon}"/>
+        </StackPanel>
+    </Viewbox>
+    
 </UserControl>

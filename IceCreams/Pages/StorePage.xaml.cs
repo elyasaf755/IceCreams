@@ -25,5 +25,10 @@ namespace IceCreams
         {
             InitializeComponent();
         }
+
+        public StorePage(ViewModelBase viewModel) : base((viewModel as HorizontalListStoreViewModel).MyStoreViewModel)
+        {
+            InitializeComponent();
+        }
     }
 }
