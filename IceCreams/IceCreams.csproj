@@ -66,6 +66,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Pages\Store\AddStorePage.xaml.cs">
+      <DependentUpon>AddStorePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Animations\PageAnimation.cs" />
     <Compile Include="Animations\PageAnimations.cs" />
     <Compile Include="Animations\StoryboardHelpers.cs" />
@@ -88,7 +91,7 @@
     <Compile Include="Pages\LoginRegister\RegisterEmailPage.xaml.cs">
       <DependentUpon>RegisterEmailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\StorePage.xaml.cs">
+    <Compile Include="Pages\Store\StorePage.xaml.cs">
       <DependentUpon>StorePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="User Controls\HorizontalListItemControl.xaml.cs">
@@ -102,6 +105,10 @@
     <Compile Include="ValueConverters\ImageSourceConverter.cs" />
     <Compile Include="ValueConverters\ValueConverterBase.cs" />
     <Compile Include="ViewModelLocator.cs" />
+    <Page Include="Pages\Store\AddStorePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -134,7 +141,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\StorePage.xaml">
+    <Page Include="Pages\Store\StorePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

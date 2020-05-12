@@ -51,11 +51,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="View Models\Pages\Store\AddStoreViewModel.cs" />
     <Compile Include="Base\ApplicationPage.cs" />
     <Compile Include="View Models\ApplicationViewModel.cs" />
     <Compile Include="Base\IHavePassword.cs" />
     <Compile Include="Base\RelayCommand.cs" />
     <Compile Include="Base\RelayParameterizedCommand.cs" />
+    <Compile Include="View Models\Pages\Store\Design\AddStoreDesignModel.cs" />
     <Compile Include="View Models\User Controls\HorizontalListPricedItemViewModel.cs" />
     <Compile Include="View Models\Pages\MainPage\Design\MainPageDesignModel.cs" />
     <Compile Include="View Models\User Controls\Base\Design\HorizontalListItemDesignModel.cs" />
