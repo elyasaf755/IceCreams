@@ -42,8 +42,7 @@ namespace ViewModels
 
         public StoreViewModel()
         {
-            // TODO: Delete
-            //PopulateStore();
+
         }
 
         #endregion

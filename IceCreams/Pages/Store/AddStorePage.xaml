@@ -5,60 +5,101 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:IceCreams"
       xmlns:vm="clr-namespace:ViewModels;assembly=ViewModels"
-      mc:Ignorable="d" 
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+      xmlns:e="http://schemas.microsoft.com/expression/2010/interactions"
+                mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddStorePage">
+      Title="AddStorePage" d:DataContext="{x:Static vm:AddStoreDesignModel.Instance}">
+
+    <Page.Resources>
+        <BitmapImage x:Key="DefaultImage" UriSource="/IceCreams;component/Images/logo.png" />
+
+        <Style x:Key="DragOverStyle" TargetType="StackPanel">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="DragOver">
+                    <BeginStoryboard>
+                        <Storyboard>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger SourceName="DragDropStackPanel" EventName="DragOver">
+            <e:CallMethodAction
+                TargetObject="{Binding}"
+                MethodName="DragOver"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="200" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-        <!-- Page Header (Upper Row)-->
-        <Grid Grid.Row="0">
+        <!-- Left Grid (Store Editor) -->
+        <Border BorderThickness="0 0 1 0" BorderBrush="Black" >
+            
+        </Border>
 
-            <!-- Store Header -->
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="200">
+        <!-- Right Grid (Store View) -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+            <!-- Page Header (Upper Row)-->
+            <Grid Grid.Row="0">
 
-                    <!-- Store Logo -->
-                    <Image Stretch="UniformToFill" Margin="0 0 20 0"
-                           Height="100" Width="100"
+                <!-- Store Header -->
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="120">
+
+                    <StackPanel Orientation="Horizontal" Margin="0 12 0 0">
+
+                        <!-- Store Logo -->
+                        <Image Stretch="UniformToFill" Margin="0 0 12 0"
+                           Height="60" Width="60"
                            Source="{Binding CurrentStore.ImageUrl, 
                                             Converter={local:ImageSourceConverter}}" />
 
-                    <!-- Store Name -->
-                    <TextBlock Text="{Binding CurrentStore.Name}" 
-                           FontSize="80" FontFamily="Old English Text MT" FontWeight="Bold"
+                        <!-- Store Name -->
+                        <TextBlock Text="{Binding CurrentStore.Name}" 
+                           FontSize="48" FontFamily="Old English Text MT" FontWeight="Bold"
                            VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF3563FF" />
 
-                </StackPanel>
+                    </StackPanel>
 
-                <!-- Store Address Line -->
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" 
+                    <!-- Store Address Line -->
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" 
                             HorizontalAlignment="Center">
-                    <TextBlock Text="{StaticResource FontAwesomeLocationIcon}" FontSize="20"
-                               Style="{StaticResource IconTextBlock}" Margin="0 0 5 5" />
-                    <TextBlock Text="{Binding CurrentStore.Address}" FontSize="20" />
-                </StackPanel>
+                        <TextBlock Text="{StaticResource FontAwesomeLocationIcon}" FontSize="12"
+                               Style="{StaticResource IconTextBlock}" Margin="0 0 3 3" />
+                        <TextBlock Text="{Binding CurrentStore.Address}" FontSize="20" />
+                    </StackPanel>
 
-                <!-- Store Phone Number -->
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" 
+                    <!-- Store Phone Number -->
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" 
                             HorizontalAlignment="Center">
-                    <TextBlock Text="{StaticResource FontAwesomePhoneIcon}" FontSize="20"
-                               Style="{StaticResource IconTextBlock}" Margin="0 0 5 0" />
-                    <TextBlock Text="{Binding CurrentStore.Phone}" FontSize="20" />
+                        <TextBlock Text="{StaticResource FontAwesomePhoneIcon}" FontSize="12"
+                               Style="{StaticResource IconTextBlock}" Margin="0 0 3 0" />
+                        <TextBlock Text="{Binding CurrentStore.Phone}" FontSize="12" />
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
 
-        </Grid>
+            </Grid>
 
-        <!-- Page Content (Lower Row) -->
-        <Grid Grid.Row="1">
-            <local:HorizontalListControl d:DataContext="{Binding CurrentStoreListViewModel}" 
+            <!-- Page Content (Lower Row) -->
+            <Grid Grid.Row="1">
+                <local:HorizontalListControl d:DataContext="{Binding CurrentStoreListViewModel}" 
                                     DataContext="{Binding CurrentStoreListViewModel}"/>
+            </Grid>
         </Grid>
+        
+
+        
     </Grid>
 </local:PageBase>

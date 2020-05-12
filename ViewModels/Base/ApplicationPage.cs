@@ -27,13 +27,18 @@ namespace ViewModels
         RegisterPassword = 3,
 
         /// <summary>
-        /// The password registration page
+        /// The main page
         /// </summary>
         MainPage = 4,
 
         /// <summary>
-        /// The password registration page
+        /// The store page
         /// </summary>
         Store = 5,
+
+        /// <summary>
+        /// The add store page
+        /// </summary>
+        AddStore = 6,
     }
 }
