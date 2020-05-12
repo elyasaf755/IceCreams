@@ -10,6 +10,55 @@
       Title="AddStorePage">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Page Header (Upper Row)-->
+        <Grid Grid.Row="0">
+
+            <!-- Store Header -->
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="200">
+
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+
+                    <!-- Store Logo -->
+                    <Image Stretch="UniformToFill" Margin="0 0 20 0"
+                           Height="100" Width="100"
+                           Source="{Binding CurrentStore.ImageUrl, 
+                                            Converter={local:ImageSourceConverter}}" />
+
+                    <!-- Store Name -->
+                    <TextBlock Text="{Binding CurrentStore.Name}" 
+                           FontSize="80" FontFamily="Old English Text MT" FontWeight="Bold"
+                           VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF3563FF" />
+
+                </StackPanel>
+
+                <!-- Store Address Line -->
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" 
+                            HorizontalAlignment="Center">
+                    <TextBlock Text="{StaticResource FontAwesomeLocationIcon}" FontSize="20"
+                               Style="{StaticResource IconTextBlock}" Margin="0 0 5 5" />
+                    <TextBlock Text="{Binding CurrentStore.Address}" FontSize="20" />
+                </StackPanel>
+
+                <!-- Store Phone Number -->
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" 
+                            HorizontalAlignment="Center">
+                    <TextBlock Text="{StaticResource FontAwesomePhoneIcon}" FontSize="20"
+                               Style="{StaticResource IconTextBlock}" Margin="0 0 5 0" />
+                    <TextBlock Text="{Binding CurrentStore.Phone}" FontSize="20" />
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+
+        <!-- Page Content (Lower Row) -->
+        <Grid Grid.Row="1">
+            <local:HorizontalListControl d:DataContext="{Binding CurrentStoreListViewModel}" 
+                                    DataContext="{Binding CurrentStoreListViewModel}"/>
+        </Grid>
     </Grid>
 </local:PageBase>
