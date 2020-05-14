@@ -7,31 +7,47 @@
       xmlns:vm="clr-namespace:ViewModels;assembly=ViewModels"
       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       xmlns:e="http://schemas.microsoft.com/expression/2010/interactions"
-                mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1080"
       Title="AddStorePage" d:DataContext="{x:Static vm:AddStoreDesignModel.Instance}">
 
     <Page.Resources>
         <BitmapImage x:Key="DefaultImage" UriSource="/IceCreams;component/Images/logo.png" />
-
-        <Style x:Key="DragOverStyle" TargetType="StackPanel">
-            <Style.Triggers>
-                <EventTrigger RoutedEvent="DragOver">
-                    <BeginStoryboard>
-                        <Storyboard>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Style.Triggers>
-        </Style>
     </Page.Resources>
-
+    
     <i:Interaction.Triggers>
-        <i:EventTrigger SourceName="DragDropStackPanel" EventName="DragOver">
-            <e:CallMethodAction
-                TargetObject="{Binding}"
-                MethodName="DragOver"/>
+        
+        <!-- Image Drag & Drop Event Trigger -->
+        <i:EventTrigger SourceName="DropArea" EventName="DragOver">
+            <e:CallMethodAction TargetObject="{Binding}"
+                                MethodName="DragOver"/>
         </i:EventTrigger>
+
+        <!-- Store Name Text Changed Event Trigger -->
+        <i:EventTrigger EventName="TextChanged" SourceName="StoreNameTextBox">
+            <i:InvokeCommandAction Command="{Binding StoreNameChangedCommand}" />
+        </i:EventTrigger>
+
+        <!-- Street Text Changed Event Trigger -->
+        <i:EventTrigger EventName="TextChanged" SourceName="StreetTextBox">
+            <i:InvokeCommandAction Command="{Binding StreetChangedCommand}" />
+        </i:EventTrigger>
+
+        <!-- City Text Changed Event Trigger -->
+        <i:EventTrigger EventName="TextChanged" SourceName="CityTextBox">
+            <i:InvokeCommandAction Command="{Binding CityChangedCommand}" />
+        </i:EventTrigger>
+
+        <!-- Country Text Changed Event Trigger -->
+        <i:EventTrigger EventName="TextChanged" SourceName="CountryTextBox">
+            <i:InvokeCommandAction Command="{Binding CountryChangedCommand}" />
+        </i:EventTrigger>
+
+        <!-- Phone Number Text Changed Event Trigger -->
+        <i:EventTrigger EventName="TextChanged" SourceName="PhoneNumberTextBox">
+            <i:InvokeCommandAction Command="{Binding PhoneNumberChangedCommand}" />
+        </i:EventTrigger>
+        
     </i:Interaction.Triggers>
 
     <Grid>
@@ -40,10 +56,70 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <!-- Left Grid (Store Editor) -->
-        <Border BorderThickness="0 0 1 0" BorderBrush="Black" >
-            
-        </Border>
+        <!-- Left Grid (Store Details Editor) -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel VerticalAlignment="Top"
+                        Margin="20 20 0 0">
+
+                <!-- Store Details -->
+                <Expander Header="EDIT STORE DETAILS">
+                    <StackPanel VerticalAlignment="Top">
+                        <!-- Store Name TextBox -->
+                        <TextBox x:Name="StoreNameTextBox" Tag="STORE NAME" 
+                         Style="{StaticResource RegularFloatTextBox}"/>
+
+                        <!-- Street TextBox -->
+                        <TextBox x:Name="StreetTextBox" Tag="STREET" 
+                         Style="{StaticResource RegularFloatTextBox}"/>
+
+                        <!-- City TextBox -->
+                        <TextBox x:Name="CityTextBox" Tag="CITY" 
+                         Style="{StaticResource RegularFloatTextBox}"/>
+
+                        <!-- Country TextBox -->
+                        <TextBox x:Name="CountryTextBox" Tag="COUNTRY" 
+                         Style="{StaticResource RegularFloatTextBox}"/>
+
+                        <!-- Phone Number TextBox -->
+                        <TextBox x:Name="PhoneNumberTextBox" Tag="PHONE NUMBER" 
+                         Style="{StaticResource RegularFloatTextBox}"/>
+                    </StackPanel>
+                </Expander>
+
+                <Expander Header="ADD A NEW ICECREAM">
+                    <StackPanel>
+                        <TextBox Tag="ICECREAM NAME" />
+                        <TextBox Tag="ICECREAM DESCRIPTION" />
+                        <TextBox Tag="ICECREAM PRICE" />
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="150" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <StackPanel x:Name="DropArea"
+                    AllowDrop="True"
+                    DragOver="DropArea_DragOver"
+                    Background="#D8D8D8"
+                    Margin="15">
+                                <Rectangle Stroke="#FF000000"
+                       Height="120"
+                       StrokeThickness="1"
+                       StrokeDashArray="4 4" />
+                            </StackPanel>
+                            <TextBlock Text="Drop image here"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" />
+                            <StackPanel Grid.Row="1">
+                                <Image x:Name="dragedImage" />
+                            </StackPanel>
+                        </Grid>
+
+                        <local:HorizontalListItemControl DataContext="{Binding Item}" Height="400"/>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+        </ScrollViewer>
 
         <!-- Right Grid (Store View) -->
         <Grid Grid.Column="1">
@@ -55,10 +131,12 @@
             <!-- Page Header (Upper Row)-->
             <Grid Grid.Row="0">
 
-                <!-- Store Header -->
+                <!-- Store Details -->
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="120">
 
-                    <StackPanel Orientation="Horizontal" Margin="0 12 0 0">
+                    <!-- Store Header -->
+                    <StackPanel Orientation="Horizontal" Margin="0 12 0 0"
+                                HorizontalAlignment="Center" VerticalAlignment="Center">
 
                         <!-- Store Logo -->
                         <Image Stretch="UniformToFill" Margin="0 0 12 0"
@@ -67,26 +145,40 @@
                                             Converter={local:ImageSourceConverter}}" />
 
                         <!-- Store Name -->
-                        <TextBlock Text="{Binding CurrentStore.Name}" 
+                        <TextBlock Text="{Binding ElementName=StoreNameTextBox, Path=Text}" 
                            FontSize="48" FontFamily="Old English Text MT" FontWeight="Bold"
                            VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF3563FF" />
 
                     </StackPanel>
 
                     <!-- Store Address Line -->
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" 
-                            HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" 
+                                VerticalAlignment="Center" HorizontalAlignment="Center">
+                        
+                        <!-- Location Icon -->
                         <TextBlock Text="{StaticResource FontAwesomeLocationIcon}" FontSize="12"
                                Style="{StaticResource IconTextBlock}" Margin="0 0 3 3" />
-                        <TextBlock Text="{Binding CurrentStore.Address}" FontSize="20" />
+                        
+                        <!-- Street -->
+                        <TextBlock Text="{Binding ElementName=StreetTextBox, Path=Text, StringFormat='{}{0}\, ', FallbackValue=''}" FontSize="20" />
+
+                        <!-- City -->
+                        <TextBlock Text="{Binding ElementName=CityTextBox, Path=Text, StringFormat='{}{0}\, '}" FontSize="20" />
+
+                        <!-- Country -->
+                        <TextBlock Text="{Binding ElementName=CountryTextBox, Path=Text}" FontSize="20" />
                     </StackPanel>
 
                     <!-- Store Phone Number -->
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" 
                             HorizontalAlignment="Center">
+                        
+                        <!-- Phone Icon -->
                         <TextBlock Text="{StaticResource FontAwesomePhoneIcon}" FontSize="12"
                                Style="{StaticResource IconTextBlock}" Margin="0 0 3 0" />
-                        <TextBlock Text="{Binding CurrentStore.Phone}" FontSize="12" />
+                        
+                        <!-- Phone Number -->
+                        <TextBlock Text="{Binding ElementName=PhoneNumberTextBox, Path=Text}" FontSize="12" />
                     </StackPanel>
                 </StackPanel>
 

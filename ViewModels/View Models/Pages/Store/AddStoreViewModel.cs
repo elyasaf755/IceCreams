@@ -1,6 +1,8 @@
 ﻿using Models;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace ViewModels
 {
@@ -18,8 +20,42 @@ namespace ViewModels
         /// </summary>
         public HorizontalListViewModel CurrentStoreListViewModel { get; set; } = new HorizontalListViewModel();
 
-        public bool IsDragDropOver { get; set; } = false;
+        public HorizontalListItemViewModel Item { get; set; } = new HorizontalListItemViewModel
+        {
+            UpperHeader = "BLA",
+        };
 
+        public string ImagePath { get; set; }
+
+
+        #endregion
+
+        #region Commands
+
+        /// <summary>
+        /// Fired when the store name is changed in the filters
+        /// </summary>
+        public ICommand StoreNameChangedCommand { get; set; }
+
+        /// <summary>
+        /// Fired whent the country is changed in the filters
+        /// </summary>
+        public ICommand CountryChangedCommand { get; set; }
+
+        /// <summary>
+        /// Fired when the city is changed in the filters
+        /// </summary>
+        public ICommand CityChangedCommand { get; set; }
+
+        /// <summary>
+        /// Fired when the street is changed in the filters
+        /// </summary>
+        public ICommand StreetChangedCommand { get; set; }
+
+        /// <summary>
+        /// Fired when the phone number is changed in the filters
+        /// </summary>
+        public ICommand PhoneNumberChangedCommand { get; set; }
 
         #endregion
 
@@ -28,14 +64,41 @@ namespace ViewModels
         public AddStoreViewModel()
         {
             PopulateStore();
+
+            //Initialize commands
+            StoreNameChangedCommand = new RelayCommand(() => StoreNameChanged());
+            CountryChangedCommand = new RelayCommand(() => CountryChanged());
+            CityChangedCommand = new RelayCommand(() => CityChanged());
+            StreetChangedCommand = new RelayCommand(() => StreetChanged());
+            PhoneNumberChangedCommand = new RelayCommand(() => PhoneNumberChanged());
+        }
+
+        private void StoreNameChanged()
+        {
+
+        }
+
+        private void StreetChanged()
+        {
+
+        }
+
+        private void CityChanged()
+        {
+
+        }
+
+        private void CountryChanged()
+        {
+
+        }
+
+        private void PhoneNumberChanged()
+        {
+
         }
 
         #endregion
-
-        public void DragOver(object sender, EventArgs e)
-        {
-            IsDragDropOver = true;
-        }
 
         private void PopulateStore()
         {

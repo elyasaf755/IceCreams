@@ -7,25 +7,14 @@
       xmlns:vm="clr-namespace:ViewModels;assembly=ViewModels"
       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       mc:Ignorable="d" 
-      d:DesignHeight="720" d:DesignWidth="1280"
+      d:DesignHeight="680" d:DesignWidth="1280"
+      x:Name="mainPage"
       Title="IceCreams!" d:DataContext="{x:Static vm:MainPageDesignModel.Instance}">
 
     <!-- Event Commands definitions fot this page's controls-->
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
-        </i:EventTrigger>
-
-        <i:EventTrigger EventName="TextChanged" SourceName="StoreNameTextBox">
-            <i:InvokeCommandAction Command="{Binding StoreNameChangedCommand}" />
-        </i:EventTrigger>
-
-        <i:EventTrigger EventName="TextChanged" SourceName="CountryTextBox">
-            <i:InvokeCommandAction Command="{Binding CountryChangedCommand}" />
-        </i:EventTrigger>
-
-        <i:EventTrigger EventName="TextChanged" SourceName="CityTextBox">
-            <i:InvokeCommandAction Command="{Binding CityChangedCommand}" />
         </i:EventTrigger>
 
         <i:EventTrigger EventName="SelectionChanged" SourceName="MyListBox">
@@ -47,30 +36,36 @@
         </Grid.ColumnDefinitions>
 
         <!-- Search Filters -->
-        <StackPanel Grid.Column="0" 
+        <Grid>
+            <TextBlock Text="Search Filters" FontSize="20"
+                       Panel.ZIndex="1" 
+                       Background="White"
+                       Margin="0,-660,0,0"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"  />
+            <Border BorderThickness="1" BorderBrush="Black" Margin="10">
+                <StackPanel Grid.Column="0" 
                     HorizontalAlignment="Center" VerticalAlignment="Top">
 
-            <!-- Store Name Filter -->
-            <TextBox x:Name="StoreNameTextBox" 
+                    <!-- Store Name Filter -->
+                    <TextBox x:Name="StoreNameTextBox" Tag="STORE NAME" Margin="0 40 0 0" 
                      Style="{StaticResource RegularFloatTextBox}"
-                     Tag="STORE NAME" Margin="0 40 0 0" Text="{Binding StoreName}"/>
+                     Text="{Binding StoreName, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Label Content="Store Address" HorizontalAlignment="Center"
+                    <Label Content="Store Address" HorizontalAlignment="Center"
                    FontSize="20" FontWeight="Bold" Margin="0 40 0 10"/>
 
-            <!-- Country Filter -->
-            <TextBox x:Name="CountryTextBox"
+                    <!-- Country Filter -->
+                    <TextBox x:Name="CountryTextBox" Tag="COUNTRY" 
                      Style="{StaticResource RegularFloatTextBox}"
-                     Tag="COUNTRY" Text="{Binding Country}"/>
+                     Text="{Binding Country, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <!-- City Filter -->
-            <TextBox x:Name="CityTextBox"
+                    <!-- City Filter -->
+                    <TextBox x:Name="CityTextBox" Tag="CITY"
                      Style="{StaticResource RegularFloatTextBox}"
-                     Tag="CITY" Text="{Binding City}"/>
-
-            <!-- TODO: Delete -->
-            <TextBox Style="{StaticResource RegularFloatTextBox}" Tag="TEST" Text="{Binding Text}" />
-        </StackPanel>
+                     Text="{Binding City, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+            </Border>
+        </Grid>
 
         <!-- Stores List Container -->
         <ListBox Grid.Column="1" ItemsSource="{Binding Items}" 

@@ -10,6 +10,15 @@ namespace ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
+        #region Private Fields
+
+        private List<HorizontalListStoreViewModel> _originalSource;
+        private string _country;
+        private string _city;
+        private string _storeName;
+
+        #endregion
+
         #region Public Properties
         /// <summary>
         /// List of all the stores
@@ -29,20 +38,41 @@ namespace ViewModels
         /// <summary>
         /// The name of the store the user is looking for
         /// </summary>
-        public string StoreName { get; set; }
+        public string StoreName
+        {
+            get => _storeName;
+            set
+            {
+                _storeName = value;
+                this.FilterItems();
+            }
+        }
 
         /// <summary>
         /// The country where the user is looking for stores in
         /// </summary>
-        public string Country { get; set; }
+        public string Country
+        {
+            get => _country;
+            set
+            {
+                _country = value;
+                this.FilterItems();
+            }
+        }
 
         /// <summary>
         /// The city where the user is looking for stores in
         /// </summary>
-        public string City { get; set; }
-
-        // TODO: DELETE
-        public string Text { get; set; }
+        public string City
+        {
+            get => _city;
+            set
+            {
+                _city = value;
+                this.FilterItems();
+            }
+        }
 
         #endregion
 
@@ -52,21 +82,6 @@ namespace ViewModels
         /// Fired when the page is loaded
         /// </summary>
         public ICommand LoadedCommand { get; set; }
-
-        /// <summary>
-        /// Fired when store name is changed in the filters
-        /// </summary>
-        public ICommand StoreNameChangedCommand { get; set; }
-
-        /// <summary>
-        /// Fired when country name is changed in the filters
-        /// </summary>
-        public ICommand CountryChangedCommand { get; set; }
-
-        /// <summary>
-        /// Fired when city name is changed in the filters
-        /// </summary>
-        public ICommand CityChangedCommand { get; set; }
 
         /// <summary>
         /// Fired when the user double clicked a store
@@ -85,12 +100,11 @@ namespace ViewModels
         public MainPageViewModel()
         {
             // Create commands
-            LoadedCommand = new RelayCommand(async () => await Loaded());
-            StoreNameChangedCommand = new RelayCommand(async () => await StoreNameChanged());
-            CountryChangedCommand = new RelayCommand(async () => await CountryNameChanged());
-            CityChangedCommand = new RelayCommand(async () => await CityNameChanged());
-            SelectedStoreChangedCommand = new RelayParameterizedCommand(async (parameter) => await SelectedStoreChanged(parameter));
+            LoadedCommand = new RelayCommand(() => Loaded());
+            SelectedStoreChangedCommand = new RelayParameterizedCommand((parameter) => SelectedStoreChanged(parameter));
             OnMouseDoubleClickCommand = new RelayCommand(() => OnMouseDoubleClick());
+
+            this._originalSource = this.Items;
         }
 
         #endregion
@@ -102,54 +116,16 @@ namespace ViewModels
         /// The logic for LoadedCommand
         /// </summary>
         /// <returns></returns>
-        public async Task Loaded()
+        public void Loaded()
         {
             PopulateStores();
-
-            await Task.Delay(1);
-        }
-
-        /// <summary>
-        /// The logic for <see cref="StoreNameChangedCommand"/>
-        /// </summary>
-        /// <returns></returns>
-        public async Task StoreNameChanged()
-        {
-            //Code here
-            Text = "Store Name Changed";
-
-            await Task.Delay(1);
-        }
-
-        /// <summary>
-        /// The logic for <see cref="CountryChangedCommand"/>
-        /// </summary>
-        /// <returns></returns>
-        public async Task CountryNameChanged()
-        {
-            //Code here
-            Text = "Country Name Changed";
-
-            await Task.Delay(1);
-        }
-
-        /// <summary>
-        /// The logic for <see cref="CityChangedCommand"/>
-        /// </summary>
-        /// <returns></returns>
-        public async Task CityNameChanged()
-        {
-            //Code here
-            Text = "City Name Changed";
-
-            await Task.Delay(1);
         }
 
         /// <summary>
         /// The logic for <see cref="SelectedStoreChangedCommand"/>
         /// </summary>
         /// <returns></returns>
-        public async Task SelectedStoreChanged(object sender)
+        public void SelectedStoreChanged(object sender)
         {
             if (sender == null)
                 return;
@@ -158,8 +134,6 @@ namespace ViewModels
                 return;
 
             SelectedStore = sender as HorizontalListStoreViewModel;
-
-            await Task.Delay(1);
         }
 
         /// <summary>
@@ -182,8 +156,16 @@ namespace ViewModels
 
         #endregion
 
-        //TODO: DELETE BEFORE DEPLOY
-        #region DELETE BEFORE DEPLOY
+        #region Private Methods
+
+        private void FilterItems()
+        {
+            var items = this._originalSource.Where(
+                p => (string.IsNullOrEmpty(this.StoreName) || p.UpperHeader.ToLower().Contains(this.StoreName.ToLower()))
+                     && (string.IsNullOrEmpty(this.City) || p.Description.Split(',')[1].ToLower().Contains(this.City.ToLower()))
+                     && (string.IsNullOrEmpty(this.Country) || p.Description.Split(',')[2].ToLower().Contains(this.Country.ToLower()))).ToList();
+            this.Items = items;
+        }
 
         private void PopulateStores()
         {
@@ -1089,6 +1071,11 @@ namespace ViewModels
                 });
             }
         }
+
+        #endregion
+
+        //TODO: DELETE BEFORE DEPLOY
+        #region DELETE BEFORE DEPLOY
 
         private List<HorizontalListItemViewModel> GetStoreItems(Store store)
         {

@@ -25,5 +25,11 @@ namespace IceCreams
         {
             InitializeComponent();
         }
+
+        private void DropArea_DragOver(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            ((AddStoreViewModel)this.DataContext).Item.ImageUrl = files[0];
+        }
     }
 }

@@ -26,9 +26,10 @@
         <!-- Page Header (Upper Row)-->
         <Grid Grid.Row="0">
 
-            <!-- Store Header -->
+            <!-- Store Details -->
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="200">
 
+                <!-- Store Header -->
                 <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
                     
                     <!-- Store Logo -->
@@ -45,18 +46,26 @@
                 </StackPanel>
 
                 <!-- Store Address Line -->
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" 
-                            HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" 
+                            VerticalAlignment="Center" HorizontalAlignment="Center">
+                    
+                    <!-- Location Icon -->
                     <TextBlock Text="{StaticResource FontAwesomeLocationIcon}" FontSize="20"
                                Style="{StaticResource IconTextBlock}" Margin="0 0 5 5" />
+                    
+                    <!-- Address Line -->
                     <TextBlock Text="{Binding CurrentStore.Address}" FontSize="20" />
                 </StackPanel>
 
                 <!-- Store Phone Number -->
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" 
                             HorizontalAlignment="Center">
+                    
+                    <!-- Phone Icon -->
                     <TextBlock Text="{StaticResource FontAwesomePhoneIcon}" FontSize="20"
                                Style="{StaticResource IconTextBlock}" Margin="0 0 5 0" />
+                    
+                    <!-- Phone Number -->
                     <TextBlock Text="{Binding CurrentStore.Phone}" FontSize="20" />
                 </StackPanel>
             </StackPanel>
