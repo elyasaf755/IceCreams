@@ -1,4 +1,4 @@
-﻿<local:PageBase x:TypeArguments="vm:AddStoreViewModel" x:Class="IceCreams.AddStorePage"
+﻿<local:PageBase x:TypeArguments="vm:EditStoreViewModel" x:Class="IceCreams.EditStorePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,7 +9,7 @@
       xmlns:e="http://schemas.microsoft.com/expression/2010/interactions"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1080"
-      Title="AddStorePage" d:DataContext="{x:Static vm:StoreEditorBaseDesignModel.Instance}">
+      Title="Edit Store Page" d:DataContext="{x:Static vm:StoreEditorBaseDesignModel.Instance}">
 
     <Page.Resources>
         <BitmapImage x:Key="DefaultImage" UriSource="/IceCreams;component/Images/logo.png" />
@@ -58,7 +58,7 @@
                 <TextBox x:Name="PhoneNumberTextBox" Tag="PHONE NUMBER" 
                          Style="{StaticResource RegularFloatTextBox}"
                                  Text="{Binding StorePhone}"/>
-                
+
                 <!-- Drag & Drop Zone -->
                 <TextBlock AllowDrop="True" Background="LightGray"
                                    Height="100" Width="150"
@@ -164,9 +164,9 @@
                     </StackPanel>
                 </Expander>
 
-                <!-- Add Store Button -->
-                <Button  Content="ADD STORE" Style="{StaticResource ApplyButton}"
-                         Command="{Binding AddStoreCommand}"
+                <!-- Apply Changes Button -->
+                <Button  Content="APPLY CHANGES" Style="{StaticResource ApplyButton}"
+                         Command="{Binding ApplyChangesCommand}"
                          Margin="0 20 0 20" />
 
                 <!-- Leave Button -->
@@ -209,14 +209,14 @@
                     <!-- Store Address Line -->
                     <StackPanel Orientation="Horizontal" 
                                 VerticalAlignment="Center" HorizontalAlignment="Center">
-                        
+
                         <!-- Location Icon -->
                         <TextBlock Text="{StaticResource FontAwesomeLocationIcon}" FontSize="12"
                                Style="{StaticResource IconTextBlock}" Margin="0 0 3 3" />
-                        
+
                         <!-- Street -->
                         <TextBlock Text="{Binding ElementName=StreetTextBox, Path=Text}" FontSize="20" />
-                        
+
                         <!-- Show Comma When Street Isn't Empty -->
                         <TextBlock Text=", " FontSize="20">
                             <TextBlock.Style>
@@ -255,11 +255,11 @@
                     <!-- Store Phone Number -->
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" 
                             HorizontalAlignment="Center">
-                        
+
                         <!-- Phone Icon -->
                         <TextBlock Text="{StaticResource FontAwesomePhoneIcon}" FontSize="12"
                                Style="{StaticResource IconTextBlock}" Margin="0 0 3 0" />
-                        
+
                         <!-- Phone Number -->
                         <TextBlock Text="{Binding ElementName=PhoneNumberTextBox, Path=Text}" FontSize="12" />
                     </StackPanel>
@@ -273,8 +273,8 @@
                                     DataContext="{Binding CurrentStoreListViewModel}"/>
             </Grid>
         </Grid>
-        
 
-        
+
+
     </Grid>
 </local:PageBase>

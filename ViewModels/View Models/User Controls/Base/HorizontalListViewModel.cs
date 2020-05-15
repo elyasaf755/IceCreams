@@ -37,6 +37,9 @@ namespace ViewModels
         /// <returns></returns>
         public async Task LeftButtonClick()
         {
+            if (Items.Count == 0)
+                return;
+
             var temp = Items[Items.Count - 1];
             Items.RemoveAt(Items.Count - 1);
             Items.Insert(0, temp);
@@ -51,6 +54,9 @@ namespace ViewModels
         /// <returns></returns>
         public async Task RightButtonClick()
         {
+            if (Items.Count == 0)
+                return;
+
             var temp = Items[0];
             Items.RemoveAt(0);
             Items.Add(temp);

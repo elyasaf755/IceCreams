@@ -91,6 +91,9 @@
     <Compile Include="Pages\LoginRegister\RegisterEmailPage.xaml.cs">
       <DependentUpon>RegisterEmailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Store\EditStorePage.xaml.cs">
+      <DependentUpon>EditStorePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Store\StorePage.xaml.cs">
       <DependentUpon>StorePage.xaml</DependentUpon>
     </Compile>
@@ -140,6 +143,10 @@
     <Page Include="Pages\LoginRegister\RegisterEmailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Store\EditStorePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Store\StorePage.xaml">
       <SubType>Designer</SubType>

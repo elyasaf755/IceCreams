@@ -33,6 +33,9 @@
     <system:String x:Key="FontAwesomeRightIcon">&#xf061;</system:String>
     <system:String x:Key="FontAwesomeSpinnerIcon">&#xf110;</system:String>
     <system:String x:Key="FontAwesomeRefreshIcon">&#xf021;</system:String>
+    <system:String x:Key="FontAwesomeEditIcon">&#xf044;</system:String>
+    <system:String x:Key="FontAwesomeTrashIcon">&#xf1f8;</system:String>
+    
     
 
 

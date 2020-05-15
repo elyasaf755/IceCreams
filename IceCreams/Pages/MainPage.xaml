@@ -11,7 +11,7 @@
       x:Name="mainPage"
       Title="IceCreams!" d:DataContext="{x:Static vm:MainPageDesignModel.Instance}">
 
-    <!-- Event Commands definitions fot this page's controls-->
+    <!-- Event Triggers Bound To Commands-->
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
@@ -23,7 +23,7 @@
         </i:EventTrigger>
 
         <i:EventTrigger EventName="MouseDoubleClick" SourceName="MyListBox">
-            <i:InvokeCommandAction Command="{Binding OnMouseDoubleClickCommand}" />
+            <i:InvokeCommandAction Command="{Binding OnStoreDoubleClickCommand}" />
         </i:EventTrigger>
 
     </i:Interaction.Triggers>
@@ -39,7 +39,8 @@
         <Grid>
             <TextBlock Text="Search Filters" FontSize="20"
                        Panel.ZIndex="1" 
-                       Background="White"
+                       Background="{Binding Source={x:Static Application.Current}, 
+                                            Path=MainWindow.Background}"
                        Margin="0,-660,0,0"
                        HorizontalAlignment="Center" VerticalAlignment="Center"  />
             <Border BorderThickness="1" BorderBrush="Black" Margin="10">
@@ -63,13 +64,19 @@
                     <TextBox x:Name="CityTextBox" Tag="CITY"
                      Style="{StaticResource RegularFloatTextBox}"
                      Text="{Binding City, UpdateSourceTrigger=PropertyChanged}"/>
+
                 </StackPanel>
+                
             </Border>
+
+            <Button Content="ADD A NEW STORE" Style="{StaticResource NextButton}"
+                    HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                    Width="240" Margin="0 0 0 50" Command="{Binding AddNewStoreCommand}"/>
         </Grid>
 
         <!-- Stores List Container -->
         <ListBox Grid.Column="1" ItemsSource="{Binding Items}" 
-                 x:Name="MyListBox"
+                 x:Name="MyListBox" Background="Transparent"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  BorderThickness="0">
 
@@ -109,7 +116,30 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
-                        <local:HorizontalListItemControl Height="280" Margin="10"/>
+                        <local:HorizontalListItemControl Height="280" Margin="10" Tag="{Binding ElementName=mainPage}">
+                            <local:HorizontalListItemControl.ContextMenu>
+                                <ContextMenu>
+                                    <!-- Edit Item -->
+                                    <MenuItem Header="Edit"
+                                              Command="{Binding PlacementTarget.Tag.DataContext.EditCurrentStoreCommand, 
+                                                                RelativeSource={RelativeSource Mode=FindAncestor,                                                                                         
+                                                                                               AncestorType=ContextMenu}}">
+                                        <MenuItem.Icon>
+                                            <TextBlock Style="{StaticResource IconTextBlock}"
+                                                       Text="{StaticResource FontAwesomeEditIcon}" />
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                    
+                                    <MenuItem Header="Delete">
+                                        <MenuItem.Icon>
+                                            <TextBlock Style="{StaticResource IconTextBlock}"
+                                                       Text="{StaticResource FontAwesomeTrashIcon}" />
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                    
+                                </ContextMenu>
+                            </local:HorizontalListItemControl.ContextMenu>
+                        </local:HorizontalListItemControl>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

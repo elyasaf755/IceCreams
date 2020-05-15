@@ -36,6 +36,9 @@ namespace IceCreams
                 case ApplicationPage.AddStore:
                     return new AddStorePage();
 
+                case ApplicationPage.EditStore:
+                    return new EditStorePage(ViewModelLocator.ApplicationViewModel.CurrentPageViewModel);
+
                 default:
                     Debugger.Break();
                     return null;

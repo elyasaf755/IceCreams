@@ -18,7 +18,7 @@ namespace ViewModels
 
         public override string LowerHeader
         {
-            get => _price == null ? null : string.Format("${0}", _price);
+            get => (_price == null || _price == string.Empty) ? string.Empty : string.Format("${0}", _price);
             set => _price = value;
         }
 

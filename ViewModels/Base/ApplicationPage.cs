@@ -40,5 +40,10 @@ namespace ViewModels
         /// The add store page
         /// </summary>
         AddStore = 6,
+
+        /// <summary>
+        /// The store editor page
+        /// </summary>
+        EditStore = 7,
     }
 }

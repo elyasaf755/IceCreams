@@ -26,7 +26,7 @@ namespace ViewModels
         /// </summary>
         /// <param name="page">The target page</param>
         /// <param name="viewModel">The view model for the page</param>
-        public void GoToPage(ApplicationPage page, ViewModelBase viewModel = null)
+        public void GoToPage(ApplicationPage page, ViewModelBase viewModel = null, ViewModelBase caller = null)
         {
 
             // Set the view model

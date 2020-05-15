@@ -40,12 +40,12 @@
 
             <!--Create Account TextButton-->
             <Button x:Name="CreateAccountButton" Style="{StaticResource TextButton}"
-                        Content="CREATE ACCOUNT" Margin="50 127 0 0" 
-                        Command="{Binding MoveToRegisterPageCommand}" />
+                    Content="CREATE ACCOUNT" Margin="50 127 0 0" 
+                    Command="{Binding MoveToRegisterPageCommand}" />
 
             <!--Can't Sign In? TextButton-->
             <Button x:Name="CantSignInButton" Style="{StaticResource TextButton}"
-                        Content="CAN'T SIGN IN?" Margin="50 0 0 0" />
+                    Content="CAN'T SIGN IN?" Margin="50 0 0 0" />
             
         </StackPanel>
 

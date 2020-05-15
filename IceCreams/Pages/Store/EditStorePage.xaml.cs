@@ -18,16 +18,16 @@ using ViewModels;
 namespace IceCreams
 {
     /// <summary>
-    /// Interaction logic for AddStorePage.xaml
+    /// Interaction logic for EditStorePage.xaml
     /// </summary>
-    public partial class AddStorePage : PageBase<AddStoreViewModel>
+    public partial class EditStorePage : PageBase<EditStoreViewModel>
     {
-        public AddStorePage()
+        public EditStorePage()
         {
             InitializeComponent();
         }
 
-        public AddStorePage(ViewModelBase viewModelBase) : base(GetViewModel(viewModelBase))
+        public EditStorePage(ViewModelBase viewModelBase) : base(GetViewModel(viewModelBase))
         {
             InitializeComponent();
         }
@@ -35,35 +35,24 @@ namespace IceCreams
         private void IcecreamDropZone_DragOver(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-            ((AddStoreViewModel)this.DataContext).IcecreamImageUrl = files[0];
+            ((EditStoreViewModel)this.DataContext).IcecreamImageUrl = files[0];
         }
 
         private void StoreDropZone_DragOver(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-            ((AddStoreViewModel)this.DataContext).StoreImageUrl = files[0];
+            ((EditStoreViewModel)this.DataContext).StoreImageUrl = files[0];
         }
 
-        private static AddStoreViewModel GetViewModel(ViewModelBase viewModelBase)
+        private static EditStoreViewModel GetViewModel(ViewModelBase viewModelBase)
         {
             if (viewModelBase is HorizontalListStoreViewModel)
             {
-                HorizontalListStoreViewModel vm = viewModelBase as HorizontalListStoreViewModel;
-                Address address = StringToAddress(vm.Description);
-                return new AddStoreViewModel()
-                {
-                    CurrentStoreListViewModel = vm.MyStoreViewModel.CurrentStoreListViewModel,
-                    StoreName = vm.UpperHeader,
-                    StoreStreet = address.Street,
-                    StoreCity = address.City,
-                    StoreCountry = address.Country,
-                    StoreImageUrl = vm.ImageUrl,
-                    StorePhone = vm.LowerHeader,
-                };
+                return new EditStoreViewModel(viewModelBase as HorizontalListStoreViewModel);
             }
             else
-                return new AddStoreViewModel();
-        } 
+                return new EditStoreViewModel();
+        }
 
         private static Address StringToAddress(string address)
         {

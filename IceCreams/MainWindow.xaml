@@ -6,10 +6,11 @@
         xmlns:local="clr-namespace:IceCreams"
         xmlns:vm="clr-namespace:ViewModels;assembly=ViewModels"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="720" Width="1280" ResizeMode="NoResize" Icon="pack://application:,,,/Images/logo.png">
+        Title="{Binding ElementName=MainFrame, Path=Content.Title}" Height="720" Width="1280" ResizeMode="NoResize" Icon="pack://application:,,,/Images/logo.png">
     <Grid>
-        <Frame x:Name="MainFrame" Content="{Binding ApplicationViewModel.CurrentPage,
-                                  Source={x:Static local:ViewModelLocator.Instance},  
-                                  Converter={local:ApplicationPageValueConverter}}"/>
+        <Frame Content="{Binding ApplicationViewModel.CurrentPage,
+                                 Source={x:Static local:ViewModelLocator.Instance},  
+                                 Converter={local:ApplicationPageValueConverter}}"
+               NavigationUIVisibility="Hidden" x:Name="MainFrame" />
     </Grid>
 </Window>

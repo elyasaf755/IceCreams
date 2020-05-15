@@ -13,8 +13,6 @@ namespace IceCreams
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            BitmapImage result;
-
             if (targetType == typeof(ImageSource))
             {
                 if (value is string)
