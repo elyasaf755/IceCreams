@@ -23,7 +23,6 @@ namespace ViewModels
             PopulateStores();
         }
 
-        //TODO: Delete
         private void PopulateStores()
         {
 
@@ -748,23 +747,6 @@ namespace ViewModels
                     LowerHeader = store.Phone
                 });
             }
-        }
-
-        private List<HorizontalListItemViewModel> GetStoreItems(Store store)
-        {
-            var result = new List<HorizontalListItemViewModel>();
-            foreach (Icecream icecream in store.Icecreams)
-            {
-                result.Add(new HorizontalListItemViewModel
-                {
-                    UpperHeader = icecream.Name,
-                    ImageUrl = icecream.ImageUrl,
-                    Description = icecream.Description,
-                    LowerHeader = icecream.Price,
-                });
-            }
-
-            return result;
         }
     }
 }
