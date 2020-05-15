@@ -13,6 +13,10 @@ namespace Models
 
     public class Icecream
     {
+        private static int _count;
+
+        public readonly string IcecreamId;
+
         #region Public Properties
 
         public string Name { get; set; }
@@ -22,10 +26,14 @@ namespace Models
 
         #endregion
 
-        //Constructors
+        #region Constructor
 
-        //Methods
+        public Icecream()
+        {
+            ++_count;
+            IcecreamId = _count.ToString();
+        }
 
-        //Overrides
+        #endregion
     }
 }

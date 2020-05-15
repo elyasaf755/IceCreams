@@ -105,7 +105,10 @@
     </Compile>
     <Compile Include="ValueConverters\ApplicationPageValueConverter.cs" />
     <Compile Include="ValueConverters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="ValueConverters\ExpanderToBooleanConverter.cs" />
     <Compile Include="ValueConverters\ImageSourceConverter.cs" />
+    <Compile Include="ValueConverters\IsEqualOrGreaterThanConverter.cs" />
+    <Compile Include="ValueConverters\IsNullOrEmptyConverter.cs" />
     <Compile Include="ValueConverters\ValueConverterBase.cs" />
     <Compile Include="ViewModelLocator.cs" />
     <Page Include="Pages\Store\AddStorePage.xaml">

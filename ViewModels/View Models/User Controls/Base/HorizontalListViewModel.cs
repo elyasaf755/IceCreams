@@ -10,10 +10,16 @@ namespace ViewModels
 {
     public class HorizontalListViewModel : ViewModelBase
     {
+        #region Public Properties
+
         /// <summary>
         /// The items collection
         /// </summary>
         public ObservableCollection<HorizontalListItemViewModel> Items { get; set; } = new ObservableCollection<HorizontalListItemViewModel>();
+
+        #endregion
+
+        #region Commands
 
         /// <summary>
         /// Fired when the left arrow is clicked
@@ -25,17 +31,25 @@ namespace ViewModels
         /// </summary>
         public ICommand RightButtonCommand { get; set; }
 
+        #endregion
+
+        #region Constructor
+
         public HorizontalListViewModel()
         {
-            LeftButtonCommand = new RelayCommand(async () => await LeftButtonClick());
-            RightButtonCommand = new RelayCommand(async () => await RightButtonClick());
+            LeftButtonCommand = new RelayCommand(() => LeftButtonClick());
+            RightButtonCommand = new RelayCommand(() => RightButtonClick());
         }
+
+        #endregion
+
+        #region Private Methods
 
         /// <summary>
         /// Logic for <see cref="LeftButtonCommand"/>
         /// </summary>
         /// <returns></returns>
-        public async Task LeftButtonClick()
+        public void LeftButtonClick()
         {
             if (Items.Count == 0)
                 return;
@@ -43,16 +57,13 @@ namespace ViewModels
             var temp = Items[Items.Count - 1];
             Items.RemoveAt(Items.Count - 1);
             Items.Insert(0, temp);
-
-
-            await Task.Delay(1);
         }
 
         /// <summary>
         /// Logic for <see cref="RightButtonCommand"/>
         /// </summary>
         /// <returns></returns>
-        public async Task RightButtonClick()
+        public void RightButtonClick()
         {
             if (Items.Count == 0)
                 return;
@@ -60,8 +71,9 @@ namespace ViewModels
             var temp = Items[0];
             Items.RemoveAt(0);
             Items.Add(temp);
-
-            await Task.Delay(1);
         }
+
+        #endregion
+
     }
 }

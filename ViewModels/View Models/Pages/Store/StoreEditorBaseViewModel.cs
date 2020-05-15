@@ -46,7 +46,7 @@ namespace ViewModels
         public Store CurrentStore { get; set; }
 
         /// <summary>
-        /// The store icecreams list that the view is bound to
+        /// The store's icecreams list that the view is bound to
         /// </summary>
         public HorizontalListViewModel CurrentStoreListViewModel { get; set; } = new HorizontalListViewModel();
 
@@ -54,6 +54,16 @@ namespace ViewModels
         /// The icecream that the view is bound to
         /// </summary>
         public HorizontalListPricedItemViewModel Item { get; set; } = new HorizontalListPricedItemViewModel();
+
+        /// <summary>
+        /// Fired when store selection changed
+        /// </summary>
+        public ICommand SelectedIcecreamChangedCommand { get; set; }
+
+        /// <summary>
+        /// Representing the expanded expander. Used to 
+        /// </summary>
+        public object SelectedExpander { get; set; }
 
         /// <summary>
         /// The icecream's name that the user is currently adding
@@ -195,9 +205,19 @@ namespace ViewModels
         #region Commands
 
         /// <summary>
-        /// Fired when the "Add Button" is clicked
+        /// Fired when the add Icecream button is clicked
         /// </summary>
         public ICommand AddIcecreamCommand { get; set; }
+
+        /// <summary>
+        /// Fired when the Edit Icecream context menu item is clicked
+        /// </summary>
+        public ICommand EditCurrentIcecreamCommand { get; set; }
+
+        /// <summary>
+        /// Fired when the Delete Icecream context menu item is clicked
+        /// </summary>
+        public ICommand DeleteCurrentIcecreamCommand { get; set; }
 
         /// <summary>
         /// Fired when the Leave button is clicked
@@ -211,9 +231,12 @@ namespace ViewModels
         public StoreEditorBaseViewModel()
         {
             CurrentStore = new Store();
+
             //Initialize commands
             AddIcecreamCommand = new RelayCommand(() => AddIcecream());
             LeaveCommand = new RelayCommand(() => Leave());
+            EditCurrentIcecreamCommand = new RelayCommand(() => EditCurrentIcecream());
+            DeleteCurrentIcecreamCommand = new RelayCommand(() => DeleteCurrentIcecream());
         }
 
         public StoreEditorBaseViewModel(string storeId)
@@ -223,6 +246,8 @@ namespace ViewModels
             //Initialize commands
             AddIcecreamCommand = new RelayCommand(() => AddIcecream());
             LeaveCommand = new RelayCommand(() => Leave());
+            EditCurrentIcecreamCommand = new RelayCommand(() => EditCurrentIcecream());
+            DeleteCurrentIcecreamCommand = new RelayCommand(() => DeleteCurrentIcecream());
         }
 
         #endregion
@@ -248,6 +273,16 @@ namespace ViewModels
             });
 
             ClearIcecreamDetails();
+        }
+
+        private void EditCurrentIcecream()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void DeleteCurrentIcecream()
+        {
+            throw new NotImplementedException();
         }
 
         private void Leave()

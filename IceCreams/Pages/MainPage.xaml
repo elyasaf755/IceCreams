@@ -141,7 +141,6 @@
                                                        Text="{StaticResource FontAwesomeTrashIcon}" />
                                         </MenuItem.Icon>
                                     </MenuItem>
-                                    
                                 </ContextMenu>
                             </local:HorizontalListItemControl.ContextMenu>
                         </local:HorizontalListItemControl>

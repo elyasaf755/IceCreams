@@ -51,7 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataSource.cs" />
+    <Compile Include="Base\DataSource.cs" />
     <Compile Include="View Models\Pages\Store\AddStoreViewModel.cs" />
     <Compile Include="Base\ApplicationPage.cs" />
     <Compile Include="View Models\ApplicationViewModel.cs" />

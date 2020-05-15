@@ -15,6 +15,7 @@
         <BitmapImage x:Key="DefaultImage" UriSource="/IceCreams;component/Images/logo.png" />
     </Page.Resources>
 
+    <!-- Drag & Drop Event Triggers -->
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="DragOver" SourceName="StoreDropZone">
             <e:ChangePropertyAction TargetObject="{Binding ElementName=StoreDropZone}" PropertyName="Background" Value="Green" />
@@ -22,6 +23,22 @@
 
         <i:EventTrigger EventName="DragLeave" SourceName="StoreDropZone">
             <e:ChangePropertyAction TargetObject="{Binding ElementName=StoreDropZone}" PropertyName="Background" Value="LightGray" />
+        </i:EventTrigger>
+
+        <i:EventTrigger EventName="Drop" SourceName="StoreDropZone">
+            <e:ChangePropertyAction TargetObject="{Binding ElementName=StoreDropZone}" PropertyName="Background" Value="LightGray" />
+        </i:EventTrigger>
+
+        <i:EventTrigger EventName="DragOver" SourceName="IcecreamDropZone">
+            <e:ChangePropertyAction TargetObject="{Binding ElementName=IcecreamDropZone}" PropertyName="Background" Value="Green" />
+        </i:EventTrigger>
+
+        <i:EventTrigger EventName="DragLeave" SourceName="IcecreamDropZone">
+            <e:ChangePropertyAction TargetObject="{Binding ElementName=IcecreamDropZone}" PropertyName="Background" Value="LightGray" />
+        </i:EventTrigger>
+
+        <i:EventTrigger EventName="Drop" SourceName="IcecreamDropZone">
+            <e:ChangePropertyAction TargetObject="{Binding ElementName=IcecreamDropZone}" PropertyName="Background" Value="LightGray" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -34,33 +51,38 @@
         <!-- Left Grid (Store Details Editor) -->
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel Margin="20 20 0 0">
-                <!-- Store Name TextBox -->
-                <TextBox x:Name="StoreNameTextBox" Tag="STORE NAME" 
+                <Expander Header="EDIT STORE DETAILS"
+                          IsExpanded="{Binding SelectedExpander, Mode=TwoWay, 
+                                               Converter={local:ExpanderToBooleanConverter}, 
+                                               ConverterParameter=1}">
+                    <StackPanel>
+                        <!-- Store Name TextBox -->
+                        <TextBox x:Name="StoreNameTextBox" Tag="STORE NAME" 
                          Style="{StaticResource RegularFloatTextBox}"
                                  Text="{Binding StoreName}"/>
 
-                <!-- Street TextBox -->
-                <TextBox x:Name="StreetTextBox" Tag="STREET" 
+                        <!-- Street TextBox -->
+                        <TextBox x:Name="StreetTextBox" Tag="STREET" 
                                  Style="{StaticResource RegularFloatTextBox}"
                                  Text="{Binding StoreStreet}"/>
 
-                <!-- City TextBox -->
-                <TextBox x:Name="CityTextBox" Tag="CITY" 
+                        <!-- City TextBox -->
+                        <TextBox x:Name="CityTextBox" Tag="CITY" 
                          Style="{StaticResource RegularFloatTextBox}"
                                  Text="{Binding StoreCity}"/>
 
-                <!-- Country TextBox -->
-                <TextBox x:Name="CountryTextBox" Tag="COUNTRY" 
+                        <!-- Country TextBox -->
+                        <TextBox x:Name="CountryTextBox" Tag="COUNTRY" 
                          Style="{StaticResource RegularFloatTextBox}"
                                  Text="{Binding StoreCountry}"/>
 
-                <!-- Phone Number TextBox -->
-                <TextBox x:Name="PhoneNumberTextBox" Tag="PHONE NUMBER" 
+                        <!-- Phone Number TextBox -->
+                        <TextBox x:Name="PhoneNumberTextBox" Tag="PHONE NUMBER" 
                          Style="{StaticResource RegularFloatTextBox}"
                                  Text="{Binding StorePhone}"/>
-                
-                <!-- Drag & Drop Zone -->
-                <TextBlock AllowDrop="True" Background="LightGray"
+
+                        <!-- Drag & Drop Zone -->
+                        <TextBlock AllowDrop="True" Background="LightGray"
                                    Height="100" Width="150"
                                    x:Name="StoreDropZone" TextWrapping="Wrap"
                                    DragOver="StoreDropZone_DragOver">
@@ -96,9 +118,14 @@
                                            HorizontalAlignment="Center"/>
                             </Grid>
                         </TextBlock>
+                    </StackPanel>
+                </Expander>
 
                 <!-- Add a New Icecream -->
-                <Expander Header="ADD A NEW ICECREAM">
+                <Expander Header="ADD A NEW ICECREAM"
+                          IsExpanded="{Binding SelectedExpander, Mode=TwoWay, 
+                                               Converter={local:ExpanderToBooleanConverter}, 
+                                               ConverterParameter=2}">
                     <StackPanel>
 
                         <!-- Icecream Name -->
@@ -209,23 +236,124 @@
                     <!-- Store Address Line -->
                     <StackPanel Orientation="Horizontal" 
                                 VerticalAlignment="Center" HorizontalAlignment="Center">
-                        
+
                         <!-- Location Icon -->
                         <TextBlock Text="{StaticResource FontAwesomeLocationIcon}" FontSize="12"
-                               Style="{StaticResource IconTextBlock}" Margin="0 0 3 3" />
-                        
+                                   FontFamily="{StaticResource FontAwesome}" Margin="0 0 3 3"
+                                   VerticalAlignment="Center">
+                            
+                            <!-- Hide the location ICON when the store's address is empty -->
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                    <Style.Triggers>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding ElementName=StreetTextBox, Path=Text}" Value="" />
+                                                <Condition Binding="{Binding ElementName=CityTextBox, Path=Text}" Value="" />
+                                                <Condition Binding="{Binding ElementName=CountryTextBox, Path=Text}" Value="" />
+                                            </MultiDataTrigger.Conditions>
+
+                                            <MultiDataTrigger.Setters>
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </MultiDataTrigger.Setters>
+
+                                        </MultiDataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+
                         <!-- Street -->
                         <TextBlock Text="{Binding ElementName=StreetTextBox, Path=Text}" FontSize="20" />
-                        
-                        <!-- Show Comma When Street Isn't Empty -->
+
+                        <!-- Show the first comma when needed -->
                         <TextBlock Text=", " FontSize="20">
                             <TextBlock.Style>
                                 <Style TargetType="{x:Type TextBlock}">
                                     <Setter Property="Visibility" Value="Visible" />
                                     <Style.Triggers>
+
                                         <DataTrigger Binding="{Binding ElementName=StreetTextBox, Path=Text}" Value="">
                                             <Setter Property="Visibility" Value="Collapsed" />
                                         </DataTrigger>
+
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding ElementName=StreetTextBox, 
+                                                                             Path=Text, 
+                                                                             Converter={local:IsNullOrEmptyConverter}}"
+                                                           Value="False"/>
+                                                <Condition Binding="{Binding ElementName=CityTextBox, 
+                                                                             Path=Text, 
+                                                                             Converter={local:IsNullOrEmptyConverter}}"
+                                                           Value="False"/>
+                                            </MultiDataTrigger.Conditions>
+                                            <MultiDataTrigger.Setters>
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </MultiDataTrigger.Setters>
+                                        </MultiDataTrigger>
+
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding ElementName=StreetTextBox, 
+                                                                             Path=Text, 
+                                                                             Converter={local:IsNullOrEmptyConverter}}"
+                                                           Value="False"/>
+                                                <Condition Binding="{Binding ElementName=CityTextBox, 
+                                                                             Path=Text, 
+                                                                             Converter={local:IsNullOrEmptyConverter}}"
+                                                           Value="True"/>
+                                                <Condition Binding="{Binding ElementName=CountryTextBox, 
+                                                                             Path=Text, 
+                                                                             Converter={local:IsNullOrEmptyConverter}}"
+                                                           Value="False"/>
+                                            </MultiDataTrigger.Conditions>
+                                            <MultiDataTrigger.Setters>
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </MultiDataTrigger.Setters>
+                                        </MultiDataTrigger>
+
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding ElementName=StreetTextBox, 
+                                                                             Path=Text, 
+                                                                             Converter={local:IsNullOrEmptyConverter}}"
+                                                           Value="False"/>
+                                                <Condition Binding="{Binding ElementName=CityTextBox, 
+                                                                             Path=Text, 
+                                                                             Converter={local:IsNullOrEmptyConverter}}"
+                                                           Value="False"/>
+                                                <Condition Binding="{Binding ElementName=CountryTextBox, 
+                                                                             Path=Text, 
+                                                                             Converter={local:IsNullOrEmptyConverter}}"
+                                                           Value="False"/>
+                                            </MultiDataTrigger.Conditions>
+                                            <MultiDataTrigger.Setters>
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </MultiDataTrigger.Setters>
+                                        </MultiDataTrigger>
+
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding ElementName=StreetTextBox, 
+                                                                             Path=Text, 
+                                                                             Converter={local:IsNullOrEmptyConverter}}"
+                                                           Value="False"/>
+                                                <Condition Binding="{Binding ElementName=CityTextBox, 
+                                                                             Path=Text, 
+                                                                             Converter={local:IsNullOrEmptyConverter}}"
+                                                           Value="True"/>
+                                                <Condition Binding="{Binding ElementName=CountryTextBox, 
+                                                                             Path=Text, 
+                                                                             Converter={local:IsNullOrEmptyConverter}}"
+                                                           Value="True"/>
+                                            </MultiDataTrigger.Conditions>
+                                            <MultiDataTrigger.Setters>
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </MultiDataTrigger.Setters>
+                                        </MultiDataTrigger>
+
                                     </Style.Triggers>
                                 </Style>
                             </TextBlock.Style>
@@ -234,7 +362,7 @@
                         <!-- City -->
                         <TextBlock Text="{Binding ElementName=CityTextBox, Path=Text}" FontSize="20" />
 
-                        <!-- Show Comma When City Isn't Empty -->
+                        <!-- Show the second comma when needed -->
                         <TextBlock Text=", " FontSize="20">
                             <TextBlock.Style>
                                 <Style TargetType="{x:Type TextBlock}">
@@ -243,6 +371,79 @@
                                         <DataTrigger Binding="{Binding ElementName=CityTextBox, Path=Text}" Value="">
                                             <Setter Property="Visibility" Value="Collapsed" />
                                         </DataTrigger>
+
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding ElementName=StreetTextBox, 
+                                                                             Path=Text, 
+                                                                             Converter={local:IsNullOrEmptyConverter}}"
+                                                           Value="False"/>
+                                                <Condition Binding="{Binding ElementName=CityTextBox, 
+                                                                             Path=Text, 
+                                                                             Converter={local:IsNullOrEmptyConverter}}"
+                                                           Value="False"/>
+                                                <Condition Binding="{Binding ElementName=CountryTextBox, 
+                                                                             Path=Text, 
+                                                                             Converter={local:IsNullOrEmptyConverter}}"
+                                                           Value="False"/>
+                                            </MultiDataTrigger.Conditions>
+                                            <MultiDataTrigger.Setters>
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </MultiDataTrigger.Setters>
+                                        </MultiDataTrigger>
+
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding ElementName=CityTextBox, 
+                                                                             Path=Text, 
+                                                                             Converter={local:IsNullOrEmptyConverter}}"
+                                                           Value="False"/>
+                                                <Condition Binding="{Binding ElementName=CountryTextBox, 
+                                                                             Path=Text, 
+                                                                             Converter={local:IsNullOrEmptyConverter}}"
+                                                           Value="False"/>
+                                            </MultiDataTrigger.Conditions>
+                                            <MultiDataTrigger.Setters>
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </MultiDataTrigger.Setters>
+                                        </MultiDataTrigger>
+
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding ElementName=CityTextBox, 
+                                                                             Path=Text, 
+                                                                             Converter={local:IsNullOrEmptyConverter}}"
+                                                           Value="False"/>
+                                                <Condition Binding="{Binding ElementName=CountryTextBox, 
+                                                                             Path=Text, 
+                                                                             Converter={local:IsNullOrEmptyConverter}}"
+                                                           Value="True"/>
+                                            </MultiDataTrigger.Conditions>
+                                            <MultiDataTrigger.Setters>
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </MultiDataTrigger.Setters>
+                                        </MultiDataTrigger>
+
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding ElementName=StreetTextBox, 
+                                                                             Path=Text, 
+                                                                             Converter={local:IsNullOrEmptyConverter}}"
+                                                           Value="False"/>
+                                                <Condition Binding="{Binding ElementName=CityTextBox, 
+                                                                             Path=Text, 
+                                                                             Converter={local:IsNullOrEmptyConverter}}"
+                                                           Value="False"/>
+                                                <Condition Binding="{Binding ElementName=CountryTextBox, 
+                                                                             Path=Text, 
+                                                                             Converter={local:IsNullOrEmptyConverter}}"
+                                                           Value="True"/>
+                                            </MultiDataTrigger.Conditions>
+                                            <MultiDataTrigger.Setters>
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </MultiDataTrigger.Setters>
+                                        </MultiDataTrigger>
+
                                     </Style.Triggers>
                                 </Style>
                             </TextBlock.Style>
@@ -255,11 +456,25 @@
                     <!-- Store Phone Number -->
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" 
                             HorizontalAlignment="Center">
-                        
+
                         <!-- Phone Icon -->
                         <TextBlock Text="{StaticResource FontAwesomePhoneIcon}" FontSize="12"
-                               Style="{StaticResource IconTextBlock}" Margin="0 0 3 0" />
-                        
+                                   FontFamily="{StaticResource FontAwesome}" Margin="0 0 3 0"
+                                   VerticalAlignment="Center">
+                            
+                            <!-- Hide the phone icon when the store's name is empty -->
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=PhoneNumberTextBox, Path=Text}" Value="">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+
                         <!-- Phone Number -->
                         <TextBlock Text="{Binding ElementName=PhoneNumberTextBox, Path=Text}" FontSize="12" />
                     </StackPanel>
@@ -270,7 +485,7 @@
             <!-- Page Content (Lower Row) -->
             <Grid Grid.Row="1">
                 <local:HorizontalListControl d:DataContext="{Binding CurrentStoreListViewModel}" 
-                                    DataContext="{Binding CurrentStoreListViewModel}"/>
+                                    DataContext="{Binding CurrentStoreListViewModel}" />
             </Grid>
         </Grid>
         

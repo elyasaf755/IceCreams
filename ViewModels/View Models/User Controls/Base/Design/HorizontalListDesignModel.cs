@@ -45,6 +45,14 @@ namespace ViewModels
                     Description = "Item Description 3",
                     LowerHeader = "30"
                 },
+
+                new HorizontalListPricedItemViewModel
+                {
+                    UpperHeader = "Store List Design Model 4",
+                    ImageUrl = @"/IceCreams;component/Images/Items/icecream_item4.jpg",
+                    Description = "Item Description 4",
+                    LowerHeader = "30"
+                },
             };
         } 
 
