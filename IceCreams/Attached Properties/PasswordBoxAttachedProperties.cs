@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace IceCreams
@@ -55,6 +56,25 @@ namespace IceCreams
         public static void SetValue(DependencyObject sender)
         {
             SetValue(sender, ((PasswordBox)sender).SecurePassword.Length > 0);
+            SetIsPasswordEmpty((PasswordBox)sender);
+        }
+
+        public static readonly DependencyPropertyKey IsPasswordEmptyPropertyKey =
+        DependencyProperty.RegisterAttachedReadOnly(
+            "IsPasswordEmpty", typeof(bool), typeof(HasTextProperty),
+            new FrameworkPropertyMetadata());
+
+        public static readonly DependencyProperty IsPasswordEmptyProperty =
+            IsPasswordEmptyPropertyKey.DependencyProperty;
+
+        private static void SetIsPasswordEmpty(PasswordBox element)
+        {
+            element.SetValue(IsPasswordEmptyPropertyKey, element.SecurePassword.Length == 0);
+        }
+
+        public static bool GetIsPasswordEmpty(PasswordBox element)
+        {
+            return (bool)element.GetValue(IsPasswordEmptyProperty);
         }
     }
 }

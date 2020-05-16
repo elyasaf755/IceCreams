@@ -66,6 +66,8 @@ namespace ViewModels
                 var email = this.Email;
 
                 var pass = (parameter as IHavePassword).SecurePassword.Unsecure();
+
+                IoC.Application.GoToPage(ApplicationPage.MainPage);
             });
         }
 

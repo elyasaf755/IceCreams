@@ -65,6 +65,11 @@ namespace ViewModels
         /// </summary>
         public ICommand MoveToRegisterPasswordPageCommand { get; set; }
 
+        /// <summary>
+        /// The command to change the page to the main page
+        /// </summary>
+        public ICommand LeaveCommand { get; set; }
+
         #endregion
 
         #region Constructor
@@ -79,6 +84,7 @@ namespace ViewModels
 
             MoveToRegisterDatePageCommand = new RelayCommand(async () => await MoveToRegisterDatePage());
             MoveToRegisterPasswordPageCommand = new RelayCommand(async () => await MoveToRegisterPasswordPage());
+            LeaveCommand = new RelayCommand(() => Leave());
         }
 
         #endregion
@@ -180,6 +186,11 @@ namespace ViewModels
             IoC.Get<ApplicationViewModel>().CurrentPage = ApplicationPage.RegisterPassword;
 
             await Task.Delay(1);
+        }
+
+        private void Leave()
+        {
+            IoC.Application.GoToPage(ApplicationPage.Login);
         }
     }
 }
