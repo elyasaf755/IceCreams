@@ -73,9 +73,10 @@
         </Grid>
 
         <!-- Page Content (Lower Row) -->
-        <Grid Grid.Row="1">
+        <StackPanel Grid.Row="1">
             <local:HorizontalListControl d:DataContext="{Binding CurrentStoreListViewModel}" 
-                                    DataContext="{Binding CurrentStoreListViewModel}"/>
-        </Grid>
+                                    DataContext="{Binding CurrentStoreListViewModel}" Height="400"/>
+            <Button Content="Leave" Style="{StaticResource LeaveButton}" Command="{Binding LeaveCommand}" />
+        </StackPanel>
     </Grid>
 </local:PageBase>

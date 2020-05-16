@@ -38,11 +38,17 @@ namespace ViewModels
 
         #endregion
 
+        #region Commands
+
+        public ICommand LeaveCommand { get; set; }
+
+        #endregion
+
         #region Public Constructor
 
         public StoreViewModel()
         {
-
+            LeaveCommand = new RelayCommand(() => Leave());
         }
 
         #endregion
@@ -64,6 +70,11 @@ namespace ViewModels
                     LowerHeader = icecream.Price,
                 });
             }
+        }
+
+        private void Leave()
+        {
+            IoC.Application.GoToPage(ApplicationPage.MainPage);
         }
 
         #endregion
